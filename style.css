@@ -3153,16 +3153,9 @@ transform:
 
     .access-panel {
 
-    left: 50%;
+    top: 55%;
 
-    bottom:
-        calc(
-            min(
-                100vw,
-                500px
-            )
-            + 15px
-        );
+    left: 50%;
 
     width:
         min(
@@ -3171,7 +3164,8 @@ transform:
         );
 
     transform:
-        translateX(
+        translate(
+            -50%,
             -50%
         );
 }
@@ -3240,28 +3234,9 @@ transform:
 
     .access-panel {
 
-        top: 61%;
+    top: 55%;
 
-        width:
-            min(
-                90%,
-                340px
-            );
-
-        padding: 24px;
-    }
-
-
-    .access-panel {
-
-    bottom:
-        calc(
-            min(
-                100vw,
-                500px
-            )
-            + 15px
-        );
+    left: 50%;
 
     width:
         min(
@@ -3270,6 +3245,12 @@ transform:
         );
 
     padding: 24px;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
 }
 
 }
