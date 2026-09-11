@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Accès — Magical Pyan !!!
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body class="access-page">
+
+
+    <main class="access-screen">
+
+
+        <!-- Neige TV animée -->
+
+        <canvas id="tv-static"></canvas>
+
+
+        <!-- Nana animée -->
+
+        <img
+            id="access-nana"
+            class="access-nana"
+            src="nana-mouth.gif"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+        >
+
+
+        <!-- Effets de vieille télévision -->
+
+        <div class="tv-scanlines"></div>
+
+        <div class="tv-glitch-layer"></div>
+
+
+        <!-- =========================
+             SON DE TÉLÉVISION
+        ========================== -->
+
+        <audio
+            id="tv-audio"
+            src="btv.mp3"
+            loop
+            autoplay
+            preload="auto"
+        ></audio>
+
+
+        <!-- =========================
+             MESSAGE
+        ========================== -->
+
+        <div class="access-message">
+
+            <p>
+                ENTRE.
+            </p>
+
+            <p>
+                TU AS DÉJÀ VU CE QUE TU N’AURAIS JAMAIS DÛ VOIR.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             PANNEAU D'ACCÈS
+        ========================== -->
+
+        <section class="access-panel">
+
+
+            <div class="access-panel-title">
+                Accès
+            </div>
+
+
+            <label
+                for="access-password"
+                class="access-label"
+            >
+                Mot de passe
+            </label>
+
+
+            <input
+                type="password"
+                id="access-password"
+                class="access-password"
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="access-submit"
+                class="access-submit"
+            >
+                Entrer
+            </button>
+
+
+            <p
+                id="access-error"
+                class="access-error"
+            ></p>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

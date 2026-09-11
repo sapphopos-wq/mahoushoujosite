@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Mon espace — Magical Pyan !!!
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Magical Pyan !!!
+        </a>
+
+
+        <nav class="menu">
+
+            <a
+                href="index.html"
+                class="menu-link"
+            >
+                Accueil
+            </a>
+
+            <a
+                href="magical-girls.html"
+                class="menu-link"
+            >
+                Magical Girls
+            </a>
+
+            <a
+                href="romance.html"
+                class="menu-link"
+            >
+                Romance
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="ma-liste.html"
+                class="nav-button nav-button-link"
+            >
+                ♡ Ma liste
+            </a>
+
+
+            <a
+                href="mon-espace.html"
+                class="nav-button nav-button-link active"
+            >
+                ♡ Mon espace
+            </a>
+
+
+            <button
+                class="nav-button"
+                id="search-button"
+                type="button"
+            >
+                ⌕ Rechercher
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MOTEUR DE RECHERCHE
+    ========================== -->
+
+    <section
+        class="search-panel"
+        id="search-panel"
+    >
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Rechercher un anime, un personnage, un genre..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="close-search"
+                class="close-search"
+                aria-label="Fermer la recherche"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="search-results"
+            id="search-results"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTENU
+    ========================== -->
+
+    <main>
+
+        <section class="content-section my-space-page">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-kicker">
+                        ✧ Espace personnel
+                    </p>
+
+                    <h1>
+                        Mon espace
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="my-space-grid">
+
+
+                <!-- =========================
+                     CONTINUER
+                ========================== -->
+
+                <a
+                    href="continuer.html"
+                    class="my-space-card"
+                >
+
+                    <div class="my-space-card-icon">
+                        ▶
+                    </div>
+
+                    <div class="my-space-card-content">
+
+                        <h2>
+                            Continuer le visionnage
+                        </h2>
+
+                        <p>
+                            Retrouvez les anime que tu as commencés.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- =========================
+                     MA LISTE
+                ========================== -->
+
+                <a
+                    href="ma-liste.html"
+                    class="my-space-card"
+                >
+
+                    <div class="my-space-card-icon">
+                        ♡
+                    </div>
+
+                    <div class="my-space-card-content">
+
+                        <h2>
+                            Ma liste
+                        </h2>
+
+                        <p>
+                            Retrouve facilement les anime que tu as ajoutés.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- =========================
+                     HISTORIQUE
+                ========================== -->
+
+                <a
+                    href="historique.html"
+                    class="my-space-card"
+                >
+
+                    <div class="my-space-card-icon">
+                        ↺
+                    </div>
+
+                    <div class="my-space-card-content">
+
+                        <h2>
+                            Historique
+                        </h2>
+
+                        <p>
+                            Retrouve les épisodes que tu as regardés.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- =========================
+                     PROPOSITIONS
+                ========================== -->
+
+                <div
+                    class="my-space-card"
+                    id="open-contact-form"
+                    role="button"
+                    tabindex="0"
+                >
+
+                    <div class="my-space-card-icon">
+                        ✧
+                    </div>
+
+                    <div class="my-space-card-content">
+
+                        <h2>
+                            Proposer une idée
+                        </h2>
+
+                        <p>
+                            Proposer un anime, signaler un bug ou écrire au créateur.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 FORMULAIRE DE CONTACT
+            ========================== -->
+
+            <section
+                class="contact-section"
+                id="contact-section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-kicker">
+                            ✧ Message
+                        </p>
+
+                        <h2>
+                            Écrire un message
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    class="contact-form"
+                    id="contact-form"
+                    action="https://formspree.io/f/xyeyodpd"
+                    method="POST"
+                >
+
+
+                    <div class="contact-field">
+
+                        <label for="contact-type">
+                            Type de message
+                        </label>
+
+                        <select
+                            id="contact-type"
+                            name="type"
+                            required
+                        >
+
+                            <option value="">
+                                Choisis une catégorie
+                            </option>
+
+                            <option value="Proposer un anime">
+                                Proposer un anime
+                            </option>
+
+                            <option value="Signaler un bug">
+                                Signaler un bug
+                            </option>
+
+                            <option value="Message au créateur">
+                                Message au créateur
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div
+                        class="contact-field"
+                        id="anime-name-field"
+                    >
+
+                        <label for="anime-name">
+                            Nom de l'anime
+                        </label>
+
+                        <input
+                            type="text"
+                            id="anime-name"
+                            name="anime"
+                            maxlength="200"
+                            placeholder="Nom de l'anime"
+                        >
+
+                    </div>
+
+
+
+                    <div class="contact-field">
+
+                        <label for="contact-message">
+                            Message
+                        </label>
+
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            rows="10"
+                            maxlength="30000"
+                            placeholder="Écris ton message ici..."
+                            required
+                        ></textarea>
+
+                        <div class="contact-word-count">
+                            <span id="contact-word-count">
+                                0
+                            </span>
+                            / 3000 mots
+                        </div>
+
+                    </div>
+
+
+
+                    <p
+                        class="contact-error"
+                        id="contact-error"
+                    ></p>
+
+
+
+                    <p
+                        class="contact-success"
+                        id="contact-success"
+                    ></p>
+
+
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                    >
+                        Envoyer le message
+                    </button>
+
+
+                </form>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Magical Pyan !!!
+        </div>
+
+        <p>
+            ✧ Un petit coin magique pour regarder des anime ✧
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

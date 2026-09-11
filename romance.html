@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Romance — Magical Pyan !!!
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Magical Pyan !!!
+        </a>
+
+
+        <nav class="menu">
+
+            <a
+                href="index.html"
+                class="menu-link"
+            >
+                Accueil
+            </a>
+
+            <a
+                href="magical-girls.html"
+                class="menu-link"
+            >
+                Magical Girls
+            </a>
+
+            <a
+                href="romance.html"
+                class="menu-link active"
+            >
+                Romance
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a
+    href="ma-liste.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Ma liste
+</a>
+
+
+<a
+    href="mon-espace.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Mon espace
+</a>
+
+
+<button
+    class="nav-button"
+    id="search-button"
+    type="button"
+>
+    ⌕ Rechercher
+</button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MOTEUR DE RECHERCHE
+    ========================== -->
+
+    <section
+        class="search-panel"
+        id="search-panel"
+    >
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Rechercher un anime, un personnage, un genre..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="close-search"
+                class="close-search"
+                aria-label="Fermer la recherche"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="search-results"
+            id="search-results"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTENU
+    ========================== -->
+
+    <main>
+
+
+        <!-- =========================
+             CATÉGORIE ROMANCE
+        ========================== -->
+
+        <section class="content-section category-page">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-kicker">
+                        ✧ Catégorie
+                    </p>
+
+                    <h1>
+                        Romance
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ANIME
+            ========================== -->
+
+            <div
+                class="anime-grid"
+                id="category-anime-grid"
+            ></div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Magical Pyan !!!
+        </div>
+
+        <p>
+            ✧ Un petit coin magique pour regarder des anime ✧
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

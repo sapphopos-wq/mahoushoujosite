@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Magical Pyan !!!</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Magical Pyan !!!
+        </a>
+
+
+        <nav class="menu">
+
+            <a
+                href="index.html"
+                class="menu-link active"
+            >
+                Accueil
+            </a>
+
+            <a
+                href="magical-girls.html"
+                class="menu-link"
+            >
+                Magical Girls
+            </a>
+
+            <a
+                href="romance.html"
+                class="menu-link"
+            >
+                Romance
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+   <a
+    href="ma-liste.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Ma liste
+</a>
+
+
+<a
+    href="mon-espace.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Mon espace
+</a>
+
+
+<button
+    class="nav-button"
+    id="search-button"
+    type="button"
+>
+    ⌕ Rechercher
+</button>
+
+</div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MOTEUR DE RECHERCHE
+    ========================== -->
+
+    <section
+        class="search-panel"
+        id="search-panel"
+    >
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Rechercher un anime ou un titre alternatif..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="close-search"
+                class="close-search"
+                aria-label="Fermer la recherche"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="search-results"
+            id="search-results"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTENU
+    ========================== -->
+
+    <main>
+
+
+        <!-- =========================
+             À L'AFFICHE
+        ========================== -->
+
+        <section class="featured-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-kicker">
+                        ✧ À l'affiche
+                    </p>
+
+                    <h1>
+                        Pichi Pichi Pitch
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="pichi-pichi-pitch.html"
+                class="featured-anime"
+            >
+
+                <div class="featured-image">
+
+                    <img
+                        src="images/pichi-pichi-pitch/cover.jpg"
+                        alt="Pichi Pichi Pitch"
+                    >
+
+                </div>
+
+
+                <div class="featured-info">
+
+                    <p class="featured-label">
+                        MERMAID MELODY
+                    </p>
+
+                    <h2>
+                        Pichi Pichi Pitch
+                    </h2>
+
+
+                    <p class="featured-description">
+
+                        Retrouve les aventures des princesses
+                        sirènes dans leur monde rempli de
+                        musique, de magie et de romance.
+
+                    </p>
+
+
+                    <div class="tags">
+
+                        <span>
+                            Magical Girls
+                        </span>
+
+                        <span>
+                            Romance
+                        </span>
+
+                    </div>
+
+
+                    <div class="featured-buttons">
+
+
+                        <span class="main-button">
+                            ✧ Découvrir
+                        </span>
+
+
+                        <button
+                            class="secondary-button"
+                            type="button"
+                            data-add-to-list="pichi-pichi-pitch"
+                        >
+                            ♡ Ajouter à ma liste
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =========================
+             CONTINUER LE VISIONNAGE
+        ========================== -->
+
+        <section
+            class="content-section"
+            id="continue-watching-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-kicker">
+                        ✧ À reprendre
+                    </p>
+
+                    <h2>
+                        Continuer le visionnage
+                    </h2>
+
+                </div>
+
+
+                <a
+    href="continuer.html"
+    class="see-all"
+    id="see-all-watching"
+>
+    Tout voir →
+</a>
+
+            </div>
+
+
+            <div class="anime-row">
+
+
+                <!--
+                    Cette carte est cachée tant
+                    qu'aucun épisode n'a été commencé.
+                -->
+
+                <a
+                    href="pichi-pichi-pitch.html"
+                    class="anime-card"
+                    id="continue-pichi-pitch"
+                >
+
+                    <div class="anime-image">
+
+                        <img
+                            src="images/pichi-pichi-pitch/cover.jpg"
+                            alt="Pichi Pichi Pitch"
+                        >
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div class="progress-bar"></div>
+
+                    </div>
+
+
+                    <div class="anime-info">
+
+                        <h3>
+                            Pichi Pichi Pitch
+                        </h3>
+
+                        <p>
+                            Épisode 01
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Magical Pyan !!!
+        </div>
+
+        <p>
+            ✧ Un petit coin magique pour regarder des anime ✧
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

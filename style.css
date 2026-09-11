@@ -1,0 +1,3264 @@
+```css
+/* =========================================
+   MAGICAL PYAN !!!
+   STYLE
+========================================= */
+
+
+/* =========================================
+   BASE
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /*
+       Le curseur reste toujours le même,
+       même sur les éléments cliquables.
+    */
+
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 27 C14 25 5 20 5 12 C5 7 11 5 16 10 C21 5 27 7 27 12 C27 20 18 25 16 27Z' fill='white' transform='rotate(180 16 16)'/%3E%3C/svg%3E") 16 16, auto;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: #74677c;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255, 225, 242, 0.55),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(218, 240, 255, 0.65),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(240, 226, 255, 0.6),
+            transparent 30%
+        ),
+        #fffaff;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 5%;
+
+    background:
+        rgba(
+            255,
+            250,
+            255,
+            0.9
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            203,
+            177,
+            214,
+            0.2
+        );
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    color: #fff1a8;
+
+    text-decoration: none;
+
+    font-size: 1.7rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow: none;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.logo:hover {
+    transform:
+        scale(1.02);
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 38px;
+
+    margin-left: 30px;
+}
+
+
+.menu-link {
+    position: relative;
+
+    color: #817488;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+    transition:
+        color 0.2s ease,
+        font-size 0.2s ease;
+
+    text-shadow: none;
+}
+
+
+/* Survol */
+
+.menu-link:hover {
+    color: #ffffff;
+
+    font-size: 1.045rem;
+
+    text-shadow: none;
+}
+
+
+/* ÉTOILE SOUS LE LIEN */
+
+.menu-link::after {
+    content: "✦";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -17px;
+
+    transform:
+        translateX(-50%)
+        translateY(4px);
+
+    color: transparent;
+
+    font-size: 0.65rem;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.menu-link:hover::after {
+    color: #ffffff;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/*
+   L'onglet actif conserve sa couleur normale.
+*/
+
+.menu-link.active {
+    color: #817488;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   BOUTONS DE NAVIGATION
+========================================= */
+
+.nav-actions {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.nav-button {
+    border:
+        1px solid
+        rgba(
+            190,
+            157,
+            211,
+            0.25
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.65
+        );
+
+    color: #806d8b;
+
+    padding:
+        9px
+        14px;
+
+    border-radius: 20px;
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+
+    text-shadow: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-button:hover {
+    background: #ffffff;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   SECTION À L'AFFICHE
+========================================= */
+
+.featured-section {
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding:
+        75px
+        0
+        55px;
+}
+
+
+.featured-section .section-heading {
+    margin-bottom: 28px;
+}
+
+
+.section-kicker {
+    color: #c68db4;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 6px;
+
+    text-shadow: none;
+}
+
+
+.featured-section .section-heading h1 {
+    color: #806a8b;
+
+    font-size: 2.3rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   GRANDE CARTE À L'AFFICHE
+========================================= */
+
+.featured-anime {
+    display: grid;
+
+    grid-template-columns:
+        minmax(300px, 1fr)
+        minmax(300px, 1fr);
+
+    gap: 55px;
+
+    align-items: center;
+
+    padding: 25px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.5
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.22
+        );
+
+    /*
+       Important :
+       la grande carte est maintenant
+       un lien et ne doit pas souligner
+       tout son contenu.
+    */
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+.featured-anime:hover {
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+/* =========================================
+   IMAGE GRANDE CARTE
+========================================= */
+
+.featured-image {
+    width: 100%;
+
+    height: 430px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #ffffff 0%,
+            #eee1fa 38%,
+            #dceefa 100%
+        );
+
+    border:
+        1px solid
+        rgba(
+            196,
+            170,
+            216,
+            0.2
+        );
+}
+
+
+.featured-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   INFORMATIONS GRANDE CARTE
+========================================= */
+
+.featured-info {
+    padding: 20px;
+}
+
+
+.featured-label {
+    color: #c18aad;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+
+    text-shadow: none;
+}
+
+
+.featured-info h2 {
+    color: #806b89;
+
+    font-size: 2.8rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.featured-description {
+    max-width: 500px;
+
+    margin-top: 20px;
+
+    color: #827688;
+
+    line-height: 1.8;
+
+    font-size: 1rem;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   TAGS
+========================================= */
+
+.tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+
+.tags span {
+    padding:
+        6px
+        12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            239,
+            222,
+            246,
+            0.7
+        );
+
+    color: #96769f;
+
+    font-size: 0.7rem;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   BOUTONS PRINCIPAUX
+========================================= */
+
+.featured-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+
+.main-button,
+.secondary-button {
+    padding:
+        13px
+        20px;
+
+    border-radius: 30px;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    text-shadow: none;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.main-button {
+    border: none;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d99abb,
+            #baa1d8
+        );
+}
+
+
+.secondary-button {
+    border:
+        1px solid
+        rgba(
+            190,
+            157,
+            211,
+            0.3
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+
+    color: #846e8f;
+}
+
+
+.main-button:hover,
+.secondary-button:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   CONTINUER LE VISIONNAGE
+========================================= */
+
+.content-section {
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding:
+        55px
+        0
+        100px;
+}
+
+
+.content-section .section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+
+.content-section h2 {
+    color: #806a8b;
+
+    font-size: 2rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.see-all {
+    color: #b17da7;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    text-shadow: none;
+}
+
+
+.see-all:hover {
+    color: #d080ae;
+}
+
+
+/* =========================================
+   CARTES ANIME
+========================================= */
+
+.anime-row {
+    display: flex;
+
+    gap: 22px;
+
+    flex-wrap: wrap;
+}
+
+
+.anime-card {
+    width: 230px;
+
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.anime-card:hover {
+    transform:
+        translateY(-5px);
+
+    text-decoration: none;
+}
+
+
+/*
+   Les miniatures normales restent
+   verticales.
+*/
+
+.anime-image {
+    width: 100%;
+
+    height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8e6f3,
+            #e3eefb
+        );
+
+    border:
+        1px solid
+        rgba(
+            191,
+            158,
+            211,
+            0.25
+        );
+}
+
+
+.anime-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.anime-info {
+    padding:
+        12px
+        4px;
+}
+
+
+.anime-info h3 {
+    color: #806b88;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.anime-info p {
+    color: #a99aaa;
+
+    margin-top: 4px;
+
+    font-size: 0.8rem;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   BARRE DE PROGRESSION
+========================================= */
+
+.progress {
+    width: 100%;
+
+    height: 4px;
+
+    background: #eee2f0;
+
+    overflow: hidden;
+}
+
+
+.progress-bar {
+    width: 35%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d89abb,
+            #bca1d7
+        );
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding:
+        45px
+        20px;
+
+    text-align: center;
+
+    border-top:
+        1px solid
+        rgba(
+            190,
+            157,
+            211,
+            0.2
+        );
+
+    background:
+        rgba(
+            255,
+            247,
+            255,
+            0.7
+        );
+}
+
+
+.footer-logo {
+    color: #fff1a8;
+
+    font-size: 1.3rem;
+
+    font-weight: bold;
+
+    text-shadow: none;
+}
+
+
+footer p {
+    margin-top: 10px;
+
+    color: #a99aaa;
+
+    font-size: 0.8rem;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   PAGE DE PRÉSENTATION D'ANIME
+========================================= */
+
+.anime-page {
+    width:
+        min(
+            1050px,
+            88%
+        );
+
+    margin: 0 auto;
+
+    padding:
+        70px
+        0
+        100px;
+}
+
+
+.anime-hero {
+    display: grid;
+
+    grid-template-columns:
+        280px
+        minmax(0, 1fr);
+
+    gap: 48px;
+
+    align-items: center;
+}
+
+
+/* Couverture */
+
+.anime-cover {
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: #ffffff;
+}
+
+
+.anime-cover img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* Informations */
+
+.anime-information {
+    max-width: 680px;
+}
+
+
+.anime-category {
+    margin:
+        0
+        0
+        12px;
+
+    color: #c9a9d9;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.anime-information h1 {
+    margin:
+        0
+        0
+        22px;
+
+    color: #806b89;
+
+    font-size:
+        clamp(
+            2.3rem,
+            5vw,
+            4rem
+        );
+
+    line-height: 1;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.anime-description {
+    margin:
+        0
+        0
+        28px;
+
+    max-width: 650px;
+
+    color: #827688;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    text-shadow: none;
+}
+
+
+.anime-details {
+    margin-bottom: 30px;
+}
+
+
+.anime-details p {
+    margin: 7px 0;
+
+    color: #827688;
+
+    line-height: 1.6;
+}
+
+
+.anime-details strong {
+    color: #806b89;
+}
+
+
+/* =========================================
+   BOUTON AJOUTER À MA LISTE
+========================================= */
+
+.primary-button {
+    border: none;
+
+    padding:
+        14px
+        24px;
+
+    border-radius: 999px;
+
+    background: #f5dff3;
+
+    color: #765477;
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.primary-button:hover {
+    background: #f0d3eb;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   SAISONS
+========================================= */
+
+.seasons-section {
+    margin-top: 80px;
+}
+
+
+.seasons-heading {
+    margin-bottom: 25px;
+}
+
+
+.seasons-heading .section-small-title {
+    margin:
+        0
+        0
+        4px;
+
+    color: #c9a9d9;
+
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+}
+
+
+.seasons-heading h2 {
+    margin: 0;
+
+    color: #806a8b;
+
+    font-size: 1.9rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+/* Grille */
+
+.season-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            320px
+        );
+
+    gap: 24px;
+
+    justify-content: center;
+}
+
+
+/* Carte saison */
+
+.season-card {
+    display: block;
+
+    width: 320px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.2
+        );
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.season-card:hover {
+    transform:
+        translateY(-4px);
+
+    text-decoration: none;
+}
+
+
+/* Image saison */
+
+.season-image {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+}
+
+
+.season-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+.season-card:hover .season-image img {
+    transform:
+        scale(1.04);
+}
+
+
+/* Texte saison */
+
+.season-card-content {
+    padding:
+        16px
+        18px
+        19px;
+}
+
+
+.season-card-content h3 {
+    margin:
+        0
+        0
+        6px;
+
+    color: #806b89;
+
+    font-size: 1.15rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.season-card-content p {
+    margin: 0;
+
+    color: #806d86;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   CARTE CONTINUER
+========================================= */
+
+
+/*
+   Cachée tant qu'aucun épisode
+   n'a été commencé.
+*/
+
+
+/* =========================================
+   TABLETTE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        flex-wrap: wrap;
+
+        gap: 18px;
+    }
+
+
+    .menu {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        margin-left: 0;
+    }
+
+
+    .featured-anime {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .featured-image {
+        height: 350px;
+    }
+
+
+    .anime-hero {
+        grid-template-columns:
+            240px
+            minmax(0, 1fr);
+
+        gap: 35px;
+    }
+
+
+    .season-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                280px
+            );
+    }
+
+
+    .season-card {
+        width: 280px;
+    }
+
+}
+
+
+/* =========================================
+   TÉLÉPHONE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding:
+            18px
+            5%;
+    }
+
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+
+    .menu {
+        gap: 20px;
+    }
+
+
+    .menu-link {
+        font-size: 0.85rem;
+    }
+
+
+    .nav-actions {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .featured-section {
+        padding-top: 50px;
+    }
+
+
+    .featured-anime {
+        padding: 15px;
+
+        gap: 20px;
+    }
+
+
+    .featured-image {
+        height: 280px;
+    }
+
+
+    .featured-info h2 {
+        font-size: 2rem;
+    }
+
+
+    .featured-buttons {
+        flex-direction: column;
+    }
+
+
+    .main-button,
+    .secondary-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .anime-card {
+        width: 180px;
+    }
+
+
+    .anime-image {
+        height: 240px;
+    }
+
+
+    /* Page anime */
+
+    .anime-page {
+        width: 90%;
+
+        padding-top: 45px;
+    }
+
+
+    .anime-hero {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .anime-cover {
+        width:
+            min(
+                270px,
+                100%
+            );
+
+        margin: 0 auto;
+    }
+
+
+    .anime-information {
+        max-width: none;
+    }
+
+
+    /* Saisons */
+
+    .seasons-section {
+        margin-top: 65px;
+    }
+
+
+    .season-grid {
+        grid-template-columns: 1fr;
+
+        justify-items: center;
+    }
+
+
+    .season-card {
+        width:
+            min(
+                320px,
+                100%
+            );
+    }
+
+}
+
+
+/* =========================================
+   MOTEUR DE RECHERCHE
+========================================= */
+
+.search-panel {
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 22px 0 0;
+
+    display: none;
+}
+
+
+.search-panel.open {
+    display: block;
+}
+
+
+.search-box {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+
+    border:
+        1px solid
+        rgba(
+            190,
+            157,
+            211,
+            0.28
+        );
+
+    border-radius: 24px;
+
+    padding:
+        5px
+        12px
+        5px
+        18px;
+}
+
+
+.search-icon {
+    color: #b17da7;
+
+    font-size: 1.05rem;
+
+    margin-right: 10px;
+}
+
+
+#search-input {
+    flex: 1;
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #74677c;
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    padding: 12px 0;
+}
+
+
+#search-input::placeholder {
+    color: #b7a8ba;
+}
+
+
+.close-search {
+    border: none;
+
+    background: transparent;
+
+    color: #b59ab8;
+
+    font-family: inherit;
+
+    font-size: 1.45rem;
+
+    padding:
+        6px
+        8px;
+
+    line-height: 1;
+}
+
+
+.close-search:hover {
+    color: #806a8b;
+}
+
+
+/* Résultats */
+
+.search-results {
+    margin-top: 12px;
+}
+
+
+.search-result {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 8px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.76
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.16
+        );
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.search-result:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    text-decoration: none;
+}
+
+
+.search-result-image {
+    width: 65px;
+
+    height: 85px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8e6f3,
+            #e3eefb
+        );
+}
+
+
+.search-result-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.search-result-info {
+    min-width: 0;
+}
+
+
+.search-result-title {
+    color: #806b88;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+    margin-bottom: 5px;
+}
+
+
+.search-result-meta {
+    color: #a99aaa;
+
+    font-size: 0.78rem;
+
+    line-height: 1.5;
+}
+
+
+.search-empty {
+    padding: 18px;
+
+    text-align: center;
+
+    color: #a99aaa;
+
+    font-size: 0.9rem;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+
+    border-radius: 18px;
+}
+
+
+/* =========================================
+   BOUTONS LIENS DE NAVIGATION
+========================================= */
+
+.nav-button-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    cursor: inherit;
+}
+
+
+.nav-button-link:hover {
+    text-decoration: none;
+}
+
+
+/* =========================================
+   PAGE MA LISTE
+========================================= */
+
+.list-page-body {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.my-list-page {
+    flex: 1;
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding:
+        75px
+        0
+        100px;
+}
+
+
+.my-list-section {
+    width: 100%;
+}
+
+
+.my-list-heading {
+    margin-bottom: 38px;
+}
+
+
+.my-list-heading h1 {
+    margin: 0;
+
+    color: #806a8b;
+
+    font-size: 2.5rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   LISTE VIDE
+========================================= */
+
+.my-list-empty {
+    width: 100%;
+
+    padding:
+        65px
+        30px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.18
+        );
+
+    border-radius: 28px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        );
+}
+
+
+.empty-message {
+    margin: 0;
+
+    color: #806b89;
+
+    font-size: 1.25rem;
+
+    text-shadow: none;
+}
+
+
+.empty-description {
+    margin-top: 12px;
+
+    color: #a99aaa;
+
+    font-size: 0.95rem;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   GRILLE MA LISTE
+========================================= */
+
+.my-list-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(
+                210px,
+                230px
+            )
+        );
+
+    gap: 30px;
+
+    padding:
+        5px
+        10px
+        20px;
+}
+
+
+/* =========================================
+   CARTE MA LISTE
+========================================= */
+
+.my-list-card {
+    display: block;
+
+    width: 100%;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.65
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.2
+        );
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.my-list-card:hover {
+    transform:
+        translateY(-5px);
+
+    text-decoration: none;
+}
+
+
+.my-list-card-image {
+    width: 100%;
+
+    height: 300px;
+
+    overflow: hidden;
+}
+
+
+.my-list-card-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.my-list-card-info {
+    padding:
+        14px
+        14px
+        17px;
+}
+
+
+.my-list-card-info h2 {
+    margin: 0;
+
+    color: #806b88;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.my-list-card-info p {
+    margin-top: 6px;
+
+    color: #a99aaa;
+
+    font-size: 0.78rem;
+
+    line-height: 1.5;
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   PIED DE PAGE DE MA LISTE
+========================================= */
+
+.list-page-body footer {
+    margin-top: auto;
+}
+
+
+/* =========================================
+   RESPONSIVE MA LISTE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .my-list-page {
+        width: 90%;
+
+        padding-top: 50px;
+    }
+
+
+    .my-list-heading h1 {
+        font-size: 2rem;
+    }
+
+
+    .my-list-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 18px;
+
+        padding-left: 5px;
+
+        padding-right: 5px;
+    }
+
+
+    .my-list-card-image {
+        height: 240px;
+    }
+
+}
+
+
+/* =========================================
+   LECTEUR — PAGE
+========================================= */
+
+.player-page {
+    width:
+        min(
+            1000px,
+            90%
+        );
+
+    margin: 0 auto;
+
+    padding:
+        65px
+        0
+        90px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   SÉLECTEURS
+========================================= */
+
+.episode-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+.season-selector,
+.episode-selector {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        8px
+        15px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.3
+        );
+}
+
+
+.season-selector label,
+.episode-selector label {
+    color: #9b7ca2;
+
+    font-size: 0.9rem;
+}
+
+
+.season-selector select,
+.episode-selector select {
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #806b89;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    cursor: inherit;
+}
+
+
+/* =========================================
+   BOUTONS ÉPISODES
+========================================= */
+
+.episode-navigation {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.episode-nav-button {
+    position: relative;
+
+    border: none;
+
+    padding:
+        12px
+        20px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5dff3,
+            #e5e9fb
+        );
+
+    color: #806b89;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.episode-nav-button:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f9e6f5,
+            #e9edff
+        );
+}
+
+
+.episode-nav-button:disabled {
+    opacity: 0.45;
+
+    transform: none;
+}
+
+
+/* =========================================
+   CADRE DU LECTEUR
+========================================= */
+
+.video-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #f9f0ff 0%,
+            #ece9fb 55%,
+            #e4edf9 100%
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.3
+        );
+}
+
+
+/* La vidéo */
+
+.video-wrapper video {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: #f5eff8;
+}
+
+
+/* =========================================
+   PETITES DÉCORATIONS
+========================================= */
+
+.video-decoration {
+    position: absolute;
+
+    z-index: 2;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    font-size: 1.1rem;
+
+    pointer-events: none;
+}
+
+
+.video-decoration.top-left {
+    top: 12px;
+
+    left: 16px;
+}
+
+
+.video-decoration.top-right {
+    top: 12px;
+
+    right: 16px;
+}
+
+
+.video-decoration.bottom-left {
+    bottom: 42px;
+
+    left: 16px;
+}
+
+
+.video-decoration.bottom-right {
+    bottom: 42px;
+
+    right: 16px;
+}
+
+
+/* =========================================
+   RETOUR À L'ANIME
+========================================= */
+
+.back-to-anime {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: #a77ca1;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.back-to-anime:hover {
+    color: #d080ae;
+
+    transform:
+        translateY(-2px);
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   RESPONSIVE — LECTEUR
+========================================= */
+
+@media (max-width: 600px) {
+
+    .player-page {
+        width: 92%;
+
+        padding-top: 45px;
+    }
+
+
+    .episode-controls {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .episode-navigation {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+
+    .episode-nav-button {
+        width: 100%;
+    }
+
+
+    .video-wrapper {
+        border-radius: 20px;
+    }
+
+}
+
+
+/* =========================================
+   CONTINUER LE VISIONNAGE
+========================================= */
+
+.watching-card {
+    width: 230px;
+
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.watching-card:hover {
+    transform:
+        translateY(-5px);
+
+    text-decoration: none;
+}
+
+
+.watching-card .anime-image {
+    width: 100%;
+
+    height: 300px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+
+.watching-card .anime-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+#watching-grid {
+    padding-left: 10px;
+
+    padding-right: 10px;
+}
+
+
+@media (max-width: 600px) {
+
+    .watching-card {
+        width: 180px;
+    }
+
+
+    .watching-card .anime-image {
+        height: 240px;
+    }
+
+}
+
+
+/* =========================================
+   HISTORIQUE
+========================================= */
+
+.history-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding:
+        5px
+        10px
+        20px;
+}
+
+
+.history-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    width: 100%;
+
+    padding:
+        12px
+        15px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.65
+        );
+
+    border:
+        1px solid
+        rgba(
+            202,
+            174,
+            216,
+            0.18
+        );
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.history-item:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
+
+    text-decoration: none;
+}
+
+
+.history-item-image {
+    width: 70px;
+
+    height: 90px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+}
+
+
+.history-item-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.history-item-info {
+    min-width: 0;
+}
+
+
+.history-item-info h2 {
+    margin: 0;
+
+    color: #806b88;
+
+    font-size: 1rem;
+
+    font-weight: normal;
+
+    text-shadow: none;
+}
+
+
+.history-item-episode {
+    margin-top: 6px;
+
+    color: #96769f;
+
+    font-size: 0.8rem;
+}
+
+
+.history-item-date {
+    margin-top: 4px;
+
+    color: #aaa0ab;
+
+    font-size: 0.72rem;
+}
+
+
+@media (max-width: 600px) {
+
+    .history-list {
+        padding-left: 5px;
+
+        padding-right: 5px;
+    }
+
+
+    .history-item {
+        gap: 12px;
+
+        padding: 10px;
+    }
+
+
+    .history-item-image {
+        width: 58px;
+
+        height: 76px;
+    }
+
+}
+
+
+/* =========================================
+   MON ESPACE
+========================================= */
+
+.my-space-page {
+    padding-bottom: 100px;
+}
+
+
+.my-space-grid {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin:
+        50px
+        auto
+        0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+
+.my-space-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    text-decoration: none;
+
+    border-radius: 24px;
+}
+
+
+.my-space-card-icon {
+    width: 65px;
+
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+}
+
+
+.my-space-card-content h2 {
+    margin:
+        0
+        0
+        10px;
+}
+
+
+.my-space-card-content p {
+    margin: 0;
+}
+
+
+.my-space-card-disabled {
+    cursor: inherit;
+}
+
+
+/* =========================================
+   CORRECTIONS — MON ESPACE
+========================================= */
+
+
+/* Les liens restent noirs même après avoir été cliqués */
+
+.my-space-card,
+.my-space-card:visited,
+.my-space-card:hover,
+.my-space-card:active {
+    color: #000000;
+}
+
+
+/* Le texte sous chaque rubrique garde la même couleur */
+
+.my-space-card-content p,
+.my-space-card-content p:visited,
+.my-space-card-content p:hover,
+.my-space-card-content p:active {
+    color: inherit;
+}
+
+
+/* =========================================
+   FORMULAIRE — MON ESPACE
+========================================= */
+
+.contact-section {
+    width: 90%;
+
+    max-width: 900px;
+
+    margin:
+        70px
+        auto
+        0;
+
+    display: none;
+}
+
+
+.contact-section.open {
+    display: block;
+}
+
+
+.contact-form {
+    margin-top: 30px;
+}
+
+
+.contact-field {
+    margin-bottom: 25px;
+}
+
+
+.contact-field label {
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+.contact-field textarea {
+    resize: vertical;
+
+    min-height: 220px;
+}
+
+
+.contact-word-count {
+    margin-top: 8px;
+}
+
+
+.contact-word-count.too-many-words {
+    font-weight: bold;
+}
+
+
+.contact-error,
+.contact-success {
+    margin-top: 15px;
+}
+
+
+.contact-submit {
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   PAGE D'ACCÈS
+========================================= */
+
+.access-page {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: #000000;
+
+    overflow: hidden;
+}
+
+
+.access-screen {
+    position: relative;
+
+    min-height: 100vh;
+
+    background-color: #000000;
+}
+
+
+/* =========================================
+   NANA ANIMÉE
+========================================= */
+
+.access-nana {
+    position: absolute;
+
+    z-index: 1;
+
+    width:
+        min(
+            100vh,
+            560px
+        );
+
+    height:
+        min(
+            100vh,
+            560px
+        );
+
+    object-fit: contain;
+
+    left: 35%;
+
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    pointer-events: none;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    /*
+       L'image PNG/GIF ne peut pas être
+       sélectionnée ou déplacée.
+    */
+}
+
+
+/* =========================
+   VOILE SOMBRE
+========================= */
+
+.access-screen::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 36% 48%,
+            transparent 0%,
+            rgba(
+                0,
+                0,
+                0,
+                0.08
+            ) 34%,
+            rgba(
+                0,
+                0,
+                0,
+                0.78
+            ) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.access-message {
+
+    position: absolute;
+
+    z-index: 2;
+
+    top: 7%;
+
+    left: 4%;
+
+    width: 55%;
+
+    text-align: left;
+
+    color: #7d0000;
+
+    /*
+       Chiller donne un rendu très irrégulier
+       lorsqu'il est disponible.
+       Les autres polices servent de secours.
+    */
+
+    font-family:
+        "Chiller",
+        "Creepster",
+        "Brush Script MT",
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+
+    line-height: 0.95;
+
+    transform:
+        rotate(-1.4deg);
+
+        .access-message {
+}
+
+.access-message p {
+}
+
+}
+
+
+/* Tous les paragraphes */
+
+.access-message p {
+    margin: 0;
+}
+
+
+/* ENTRE. */
+
+.access-message p:first-child {
+
+    display: inline-block;
+
+    margin-left: 3%;
+
+    font-size:
+        clamp(
+            3rem,
+            6.5vw,
+            6rem
+        );
+
+    line-height: 0.8;
+
+    transform:
+        rotate(-2deg);
+}
+
+
+/* Deuxième partie */
+
+.access-message p:last-child {
+
+    width: 92%;
+
+    margin-top: 22px;
+
+    margin-left: 8%;
+
+    font-size:
+        clamp(
+            1rem,
+            2vw,
+            1.65rem
+        );
+
+    line-height: 1.25;
+
+    transform:
+        rotate(1.3deg);
+}
+
+
+/* =========================
+   PANNEAU D'ACCÈS
+========================= */
+
+.access-panel {
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 57%;
+
+    left: 70%;
+
+    /*
+       Le panneau reste parfaitement droit.
+    */
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    width:
+        min(
+            90%,
+            330px
+        );
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(
+            4,
+            4,
+            4,
+            0.88
+        );
+
+    border:
+        1px solid
+        rgba(
+            125,
+            0,
+            0,
+            0.72
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(
+            80,
+            0,
+            0,
+            0.45
+        );
+}
+
+
+/* =========================
+   TITRE DU PANNEAU
+========================= */
+
+.access-panel-title {
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    color: #8b0000;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.5rem;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.access-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #b5b5b5;
+
+    font-size: 0.9rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+}
+
+
+/* =========================
+   CHAMP
+========================= */
+
+.access-password {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding:
+        13px
+        14px;
+
+    background: #080808;
+
+    border:
+        1px solid
+        #4a4a4a;
+
+    color: #ffffff;
+
+    outline: none;
+}
+
+
+.access-password:focus {
+
+    border-color:
+        #8b0000;
+}
+
+
+/* =========================
+   BOUTON
+========================= */
+
+.access-submit {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    background: #500000;
+
+    border: none;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+}
+
+
+.access-submit:hover {
+
+    background: #760000;
+}
+
+
+/* =========================
+   ERREUR
+========================= */
+
+.access-error {
+
+    min-height: 20px;
+
+    margin:
+        14px
+        0
+        0;
+
+    text-align: center;
+
+    color: #a00000;
+
+    font-size: 0.9rem;
+}
+
+
+@media (max-width: 800px) {
+
+    .access-message {
+
+        top: 6%;
+
+        left: 4%;
+
+        width: 92%;
+    }
+
+
+    .access-message p:first-child {
+
+        margin-left: 0;
+    }
+
+
+    .access-message p:last-child {
+
+        margin-left: 3%;
+    }
+
+
+    .access-panel {
+
+        top: 72%;
+
+        left: 50%;
+
+        width:
+            min(
+                88%,
+                360px
+            );
+    }
+
+
+    .access-nana {
+
+        width:
+            min(
+                100vw,
+                560px
+            );
+
+        height:
+            min(
+                100vw,
+                560px
+            );
+
+        left: 50%;
+    }
+
+}
+
+
+/* =========================================
+   ERREUR — PAGE D'ACCÈS
+========================================= */
+
+.access-error.show {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.access-error-message {
+
+    display: block;
+
+    color: #8b0000;
+
+    /*
+       Même famille que le message
+       principal.
+    */
+
+    font-family:
+        "Chiller",
+        "Creepster",
+        "Brush Script MT",
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.8rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.access-countdown {
+
+    display: block;
+
+    color: #8b0000;
+
+    font-family:
+        "Chiller",
+        "Creepster",
+        "Brush Script MT",
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 2.4rem;
+
+    font-weight: bold;
+}
+```
+
+
+
+
+/* =========================================
+   PROTECTION — MASQUER LES PAGES PRIVÉES
+========================================= */
+
+body:not(.access-page) {
+    visibility: hidden;
+}
+
+body.site-authorized {
+    visibility: visible;
+}

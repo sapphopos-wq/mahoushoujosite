@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Lecture — Magical Pyan !!!
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Magical Pyan !!!
+        </a>
+
+
+        <nav class="menu">
+
+            <a
+                href="index.html"
+                class="menu-link"
+            >
+                Accueil
+            </a>
+
+            <a
+                href="magical-girls.html"
+                class="menu-link"
+            >
+                Magical Girls
+            </a>
+
+            <a
+                href="romance.html"
+                class="menu-link"
+            >
+                Romance
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a
+    href="ma-liste.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Ma liste
+</a>
+
+
+<a
+    href="mon-espace.html"
+    class="nav-button nav-button-link"
+>
+    ♡ Mon espace
+</a>
+
+
+<button
+    class="nav-button"
+    id="search-button"
+    type="button"
+>
+    ⌕ Rechercher
+</button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MOTEUR DE RECHERCHE
+    ========================== -->
+
+    <section
+        class="search-panel"
+        id="search-panel"
+    >
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                type="search"
+                id="search-input"
+                placeholder="Rechercher un anime ou un titre alternatif..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="close-search"
+                class="close-search"
+                aria-label="Fermer la recherche"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="search-results"
+            id="search-results"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         LECTEUR
+    ========================== -->
+
+    <main class="player-page">
+
+
+        <!-- =========================
+             CONTRÔLES SUPÉRIEURS
+        ========================== -->
+
+        <section class="episode-controls">
+
+
+            <div class="season-selector">
+
+                <label for="season-select">
+                    Saison :
+                </label>
+
+                <select
+                    id="season-select"
+                >
+                </select>
+
+            </div>
+
+
+            <div class="episode-selector">
+
+                <label for="episode-select">
+                    épisode :
+                </label>
+
+                <select
+                    id="episode-select"
+                >
+                </select>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             NAVIGATION ÉPISODES
+        ========================== -->
+
+        <section class="episode-navigation">
+
+            <button
+                type="button"
+                class="episode-nav-button"
+                id="previous-episode"
+            >
+                ☆ Épisode précédent
+            </button>
+
+
+            <button
+                type="button"
+                class="episode-nav-button"
+                id="next-episode"
+            >
+                Épisode suivant ☆
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             LECTEUR VIDÉO
+        ========================== -->
+
+        <section class="video-wrapper">
+
+            <div class="video-decoration top-left">
+                ✧
+            </div>
+
+            <div class="video-decoration top-right">
+                ♡
+            </div>
+
+            <div class="video-decoration bottom-left">
+                ♡
+            </div>
+
+            <div class="video-decoration bottom-right">
+                ✧
+            </div>
+
+
+            <video
+                id="video-player"
+                controls
+                preload="metadata"
+            >
+
+                <source
+                    id="video-source"
+                    src=""
+                    type="video/mp4"
+                >
+
+                Ton navigateur ne peut pas lire cette vidéo.
+
+            </video>
+
+        </section>
+
+
+
+        <!-- =========================
+             RETOUR
+        ========================== -->
+
+        <a
+            href="pichi-pichi-pitch.html"
+            class="back-to-anime"
+        >
+            ♡ Retour à Pichi Pichi Pitch
+        </a>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Magical Pyan !!!
+        </div>
+
+        <p>
+            ✧ Un petit coin magique pour regarder des anime ✧
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
