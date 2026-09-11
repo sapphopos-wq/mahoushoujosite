@@ -11,10 +11,6 @@
             .toLowerCase();
 
 
-    /*
-       La page d'accès reste toujours visible.
-    */
-
     if (
         currentFile === "acces.html"
     ) {
@@ -23,11 +19,6 @@
 
     }
 
-
-    /*
-       Vérifier si l'accès a déjà
-       été validé dans cet onglet.
-    */
 
     const hasAccess =
         sessionStorage.getItem(
@@ -39,11 +30,6 @@
         hasAccess !== "true"
     ) {
 
-        /*
-           La page reste cachée pendant
-           que le navigateur est redirigé.
-        */
-
         window.location.replace(
             "acces.html"
         );
@@ -53,14 +39,8 @@
     }
 
 
-    /*
-       Accès valide :
-       on révèle la page.
-    */
-
-    document.body.classList.add(
-        "site-authorized"
-    );
+    document.body.style.visibility =
+        "visible";
 
 })();
 

@@ -2,6 +2,33 @@
 <html lang="fr">
 
 <head>
+    <script>
+    (function () {
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop()
+                .toLowerCase();
+
+        const hasAccess =
+            sessionStorage.getItem(
+                "magicalPyanAccess"
+            );
+
+        if (
+            currentPage !== "acces.html" &&
+            hasAccess !== "true"
+        ) {
+
+            window.location.replace(
+                "acces.html"
+            );
+
+        }
+
+    })();
+</script>
 
     <meta charset="UTF-8">
 
