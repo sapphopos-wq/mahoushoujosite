@@ -2764,13 +2764,12 @@ footer p {
 
     left: 34%;
 
-    top: 52%;
+bottom: 0;
 
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
+transform:
+    translateX(
+        -50%
+    );
 
     pointer-events: none;
 
@@ -3182,7 +3181,7 @@ footer p {
 
         left: 50%;
 
-        top: 47%;
+        bottom: 0;
     }
 
 }
