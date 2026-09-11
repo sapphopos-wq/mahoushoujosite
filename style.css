@@ -1,4 +1,5 @@
-```css
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+
 /* =========================================
    MAGICAL PYAN !!!
    STYLE
@@ -2723,20 +2724,15 @@ footer p {
 
 .access-page {
     margin: 0;
-
     min-height: 100vh;
-
     background: #000000;
-
     overflow: hidden;
 }
 
 
 .access-screen {
     position: relative;
-
     min-height: 100vh;
-
     background-color: #000000;
 }
 
@@ -2751,22 +2747,24 @@ footer p {
     z-index: 1;
 
     width:
-        min(
-            100vh,
-            560px
+        clamp(
+            500px,
+            42vw,
+            780px
         );
 
     height:
-        min(
-            100vh,
-            560px
+        clamp(
+            500px,
+            42vw,
+            780px
         );
 
     object-fit: contain;
 
-    left: 35%;
+    left: 34%;
 
-    top: 50%;
+    top: 52%;
 
     transform:
         translate(
@@ -2779,17 +2777,12 @@ footer p {
     user-select: none;
 
     -webkit-user-drag: none;
-
-    /*
-       L'image PNG/GIF ne peut pas être
-       sélectionnée ou déplacée.
-    */
 }
 
 
-/* =========================
+/* =========================================
    VOILE SOMBRE
-========================= */
+========================================= */
 
 .access-screen::before {
 
@@ -2821,9 +2814,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    MESSAGE
-========================= */
+========================================= */
 
 .access-message {
 
@@ -2841,19 +2834,9 @@ footer p {
 
     color: #7d0000;
 
-    /*
-       Chiller donne un rendu très irrégulier
-       lorsqu'il est disponible.
-       Les autres polices servent de secours.
-    */
-
     font-family:
-        "Chiller",
-        "Creepster",
-        "Brush Script MT",
-        Georgia,
-        "Times New Roman",
-        serif;
+    "Eater",
+    serif;
 
     font-weight: bold;
 
@@ -2865,13 +2848,6 @@ footer p {
 
     transform:
         rotate(-1.4deg);
-
-        .access-message {
-}
-
-.access-message p {
-}
-
 }
 
 
@@ -2882,7 +2858,9 @@ footer p {
 }
 
 
-/* ENTRE. */
+/* =========================================
+   ENTRE.
+========================================= */
 
 .access-message p:first-child {
 
@@ -2893,8 +2871,8 @@ footer p {
     font-size:
         clamp(
             3rem,
-            6.5vw,
-            6rem
+            6vw,
+            7rem
         );
 
     line-height: 0.8;
@@ -2904,7 +2882,9 @@ footer p {
 }
 
 
-/* Deuxième partie */
+/* =========================================
+   DEUXIÈME PHRASE
+========================================= */
 
 .access-message p:last-child {
 
@@ -2917,8 +2897,8 @@ footer p {
     font-size:
         clamp(
             1rem,
-            2vw,
-            1.65rem
+            1.8vw,
+            1.8rem
         );
 
     line-height: 1.25;
@@ -2928,9 +2908,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    PANNEAU D'ACCÈS
-========================= */
+========================================= */
 
 .access-panel {
 
@@ -2938,13 +2918,9 @@ footer p {
 
     z-index: 3;
 
-    top: 57%;
+    top: 58%;
 
-    left: 70%;
-
-    /*
-       Le panneau reste parfaitement droit.
-    */
+    left: 72%;
 
     transform:
         translate(
@@ -2953,12 +2929,18 @@ footer p {
         );
 
     width:
-        min(
-            90%,
-            330px
+        clamp(
+            300px,
+            22vw,
+            390px
         );
 
-    padding: 28px;
+    padding:
+        clamp(
+            24px,
+            2vw,
+            34px
+        );
 
     box-sizing: border-box;
 
@@ -2990,9 +2972,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    TITRE DU PANNEAU
-========================= */
+========================================= */
 
 .access-panel-title {
 
@@ -3007,7 +2989,12 @@ footer p {
         "Times New Roman",
         serif;
 
-    font-size: 1.5rem;
+    font-size:
+        clamp(
+            1.3rem,
+            1.5vw,
+            1.7rem
+        );
 
     letter-spacing: 0.2em;
 
@@ -3015,9 +3002,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    LABEL
-========================= */
+========================================= */
 
 .access-label {
 
@@ -3035,9 +3022,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    CHAMP
-========================= */
+========================================= */
 
 .access-password {
 
@@ -3068,9 +3055,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    BOUTON
-========================= */
+========================================= */
 
 .access-submit {
 
@@ -3102,9 +3089,9 @@ footer p {
 }
 
 
-/* =========================
+/* =========================================
    ERREUR
-========================= */
+========================================= */
 
 .access-error {
 
@@ -3123,6 +3110,10 @@ footer p {
 }
 
 
+/* =========================================
+   TABLETTE / TÉLÉPHONE
+========================================= */
+
 @media (max-width: 800px) {
 
     .access-message {
@@ -3138,12 +3129,26 @@ footer p {
     .access-message p:first-child {
 
         margin-left: 0;
+
+        font-size:
+            clamp(
+                3rem,
+                12vw,
+                5.5rem
+            );
     }
 
 
     .access-message p:last-child {
 
         margin-left: 3%;
+
+        font-size:
+            clamp(
+                1rem,
+                4vw,
+                1.5rem
+            );
     }
 
 
@@ -3176,6 +3181,76 @@ footer p {
             );
 
         left: 50%;
+
+        top: 47%;
+    }
+
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 500px) {
+
+    .access-message {
+
+        top: 5%;
+    }
+
+
+    .access-message p:first-child {
+
+        font-size:
+            clamp(
+                2.8rem,
+                15vw,
+                4.5rem
+            );
+    }
+
+
+    .access-message p:last-child {
+
+        margin-top: 16px;
+
+        font-size:
+            clamp(
+                0.9rem,
+                4.2vw,
+                1.2rem
+            );
+    }
+
+
+    .access-panel {
+
+        top: 73%;
+
+        width:
+            min(
+                90%,
+                340px
+            );
+
+        padding: 24px;
+    }
+
+
+    .access-nana {
+
+        width:
+            min(
+                100vw,
+                500px
+            );
+
+        height:
+            min(
+                100vw,
+                500px
+            );
     }
 
 }
@@ -3205,18 +3280,9 @@ footer p {
 
     color: #8b0000;
 
-    /*
-       Même famille que le message
-       principal.
-    */
-
     font-family:
-        "Chiller",
-        "Creepster",
-        "Brush Script MT",
-        Georgia,
-        "Times New Roman",
-        serif;
+    "Eater",
+    serif;
 
     font-size: 1.8rem;
 
@@ -3235,19 +3301,13 @@ footer p {
     color: #8b0000;
 
     font-family:
-        "Chiller",
-        "Creepster",
-        "Brush Script MT",
-        Georgia,
-        "Times New Roman",
-        serif;
+    "Eater",
+    serif;
 
     font-size: 2.4rem;
 
     font-weight: bold;
 }
-```
-
 
 
 
