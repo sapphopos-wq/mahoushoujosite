@@ -2247,129 +2247,11 @@ function initializePlayer() {
         );
 
 
-    if (
-        !seasonSelect ||
-        !episodeSelect ||
-        !previousButton ||
-        !nextButton
-    ) {
-
-        return;
-
-    }
-
-
-    const parameters =
-        getPlayerParameters();
-
-
-    const anime =
-        getAnimeById(
-            parameters.animeId
-        );
-
-
-    if (!anime) {
-
-        return;
-
-    }
-
-
-    let currentSeason =
-        getSeason(
-            anime.id,
-            parameters.season
-        );
-
-
-    if (!currentSeason) {
-
-        currentSeason =
-            anime.seasons[0];
-
-    }
-
-
-    let currentEpisode =
-        getEpisode(
-            anime.id,
-            currentSeason.id,
-            parameters.episode
-        );
-
-
-    if (!currentEpisode) {
-
-        currentEpisode =
-            currentSeason.episodes[0];
-
-    }
-
-
-    populateSeasonSelect(
-        anime,
-        currentSeason.id
-    );
-
-
-    populateEpisodeSelect(
-        currentSeason,
-        currentEpisode.number
-    );
-
-
-    updateEpisodeButtons(
-        anime,
-        currentSeason.id,
-        currentEpisode.number
-    );
-
-
-    updateVideoSource(
-        anime,
-        currentSeason.id,
-        currentEpisode.number
-    );
-
-
-    initializeVideoProgress(
-        anime,
-        currentSeason.id,
-        currentEpisode.number
-    );
-
-
     const video =
         document.getElementById(
             "video-player"
         );
 
-
-    if (!video) {
-
-        return;
-
-    }
-
-
-    restoreVideoPosition(
-        anime.id,
-        video
-    );
-
-
-    updatePlayerUrl(
-        anime.id,
-        currentSeason.id,
-        currentEpisode.number
-    );
-
-
-
-    /* =========================================
-       ÉLÉMENTS DU LECTEUR
-    ========================================== */
 
     const player =
         document.getElementById(
@@ -2388,10 +2270,11 @@ function initializePlayer() {
             "video-play"
         );
 
-        const centerPlayButton =
-    document.getElementById(
-        "video-center-play"
-    );
+
+    const centerPlayButton =
+        document.getElementById(
+            "video-center-play"
+        );
 
 
     const rewindButton =
@@ -2448,6 +2331,12 @@ function initializePlayer() {
         );
 
 
+    const downloadButton =
+        document.getElementById(
+            "video-download"
+        );
+
+
     const leftSeekZone =
         document.getElementById(
             "video-seek-left"
@@ -2461,6 +2350,11 @@ function initializePlayer() {
 
 
     if (
+        !seasonSelect ||
+        !episodeSelect ||
+        !previousButton ||
+        !nextButton ||
+        !video ||
         !player ||
         !controls ||
         !playButton ||
@@ -2476,54 +2370,64 @@ function initializePlayer() {
         return;
 
     }
-if (seasonSelector) {
 
-    seasonSelector.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target === seasonSelect
-            ) {
-
-                return;
-
-            }
-
-
-            seasonSelect.click();
-
-        }
-    );
-
-}
-
-
-if (episodeSelector) {
-
-    episodeSelector.addEventListener(
-        "click",
-        (event) => {
-
-            if (
-                event.target === episodeSelect
-            ) {
-
-                return;
-
-            }
-
-
-            episodeSelect.click();
-
-        }
-    );
-
-}
 
 
     /* =========================================
-       OUTILS
+       PARAMÈTRES DE L'ÉPISODE
+    ========================================== */
+
+    const parameters =
+        getPlayerParameters();
+
+
+    const anime =
+        getAnimeById(
+            parameters.animeId
+        );
+
+
+    if (!anime) {
+
+        return;
+
+    }
+
+
+    let currentSeason =
+        getSeason(
+            anime.id,
+            parameters.season
+        );
+
+
+    if (!currentSeason) {
+
+        currentSeason =
+            anime.seasons[0];
+
+    }
+
+
+    let currentEpisode =
+        getEpisode(
+            anime.id,
+            currentSeason.id,
+            parameters.episode
+        );
+
+
+    if (!currentEpisode) {
+
+        currentEpisode =
+            currentSeason.episodes[0];
+
+    }
+
+
+
+    /* =========================================
+       OUTIL — TEMPS
     ========================================== */
 
     function formatVideoTime(seconds) {
@@ -2539,12 +2443,22 @@ if (episodeSelector) {
 
 
         const totalSeconds =
-            Math.floor(seconds);
+            Math.floor(
+                seconds
+            );
+
+
+        const hours =
+            Math.floor(
+                totalSeconds / 3600
+            );
 
 
         const minutes =
             Math.floor(
-                totalSeconds / 60
+                (
+                    totalSeconds % 3600
+                ) / 60
             );
 
 
@@ -2552,22 +2466,12 @@ if (episodeSelector) {
             totalSeconds % 60;
 
 
-        const hours =
-            Math.floor(
-                minutes / 60
-            );
-
-
-        const displayMinutes =
-            minutes % 60;
-
-
         if (hours > 0) {
 
             return (
                 String(hours).padStart(2, "0") +
                 ":" +
-                String(displayMinutes).padStart(2, "0") +
+                String(minutes).padStart(2, "0") +
                 ":" +
                 String(remainingSeconds).padStart(2, "0")
             );
@@ -2586,66 +2490,154 @@ if (episodeSelector) {
 
 
     /* =========================================
+       CONTRÔLES VISIBLES / CACHÉS
+    ========================================== */
+
+    let hideControlsTimer =
+        null;
+
+
+    function showControls() {
+
+        player.classList.remove(
+            "controls-hidden"
+        );
+
+
+        clearTimeout(
+            hideControlsTimer
+        );
+
+
+        hideControlsTimer =
+            setTimeout(
+                () => {
+
+                    if (
+                        !video.paused
+                    ) {
+
+                        player.classList.add(
+                            "controls-hidden"
+                        );
+
+                    }
+
+                },
+                5000
+            );
+
+    }
+
+
+    function keepControlsVisible() {
+
+        showControls();
+
+    }
+
+
+    player.addEventListener(
+        "mousemove",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "pointermove",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "pointerdown",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "touchstart",
+        keepControlsVisible,
+        {
+            passive: true
+        }
+    );
+
+
+    video.addEventListener(
+        "pause",
+        () => {
+
+            showControls();
+
+            clearTimeout(
+                hideControlsTimer
+            );
+
+        }
+    );
+
+
+
+    /* =========================================
        LECTURE / PAUSE
     ========================================== */
 
     function updatePlayButton() {
 
-    if (video.paused) {
+        if (video.paused) {
 
-        playButton.textContent =
-            "▶";
-
-
-        playButton.setAttribute(
-            "aria-label",
-            "Lire"
-        );
+            playButton.textContent =
+                "▶";
 
 
-        if (centerPlayButton) {
-
-            centerPlayButton.classList.remove(
-                "is-hidden"
-            );
-
-
-            centerPlayButton.setAttribute(
+            playButton.setAttribute(
                 "aria-label",
-                "Lire la vidéo"
-            );
-
-        }
-
-    } else {
-
-        playButton.textContent =
-            "Ⅱ";
-
-
-        playButton.setAttribute(
-            "aria-label",
-            "Mettre en pause"
-        );
-
-
-        if (centerPlayButton) {
-
-            centerPlayButton.classList.add(
-                "is-hidden"
+                "Lire"
             );
 
 
-            centerPlayButton.setAttribute(
+            if (centerPlayButton) {
+
+                centerPlayButton.classList.remove(
+                    "is-hidden"
+                );
+
+                centerPlayButton.setAttribute(
+                    "aria-label",
+                    "Lire la vidéo"
+                );
+
+            }
+
+        } else {
+
+            playButton.textContent =
+                "Ⅱ";
+
+
+            playButton.setAttribute(
                 "aria-label",
                 "Mettre en pause"
             );
 
+
+            if (centerPlayButton) {
+
+                centerPlayButton.classList.add(
+                    "is-hidden"
+                );
+
+                centerPlayButton.setAttribute(
+                    "aria-label",
+                    "Mettre en pause"
+                );
+
+            }
+
         }
 
     }
-
-}
 
 
     function togglePlay() {
@@ -2689,20 +2681,20 @@ if (episodeSelector) {
 
     if (centerPlayButton) {
 
-    centerPlayButton.addEventListener(
-        "click",
-        (event) => {
+        centerPlayButton.addEventListener(
+            "click",
+            (event) => {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
-            togglePlay();
+                togglePlay();
 
-            showControls();
+                showControls();
 
-        }
-    );
+            }
+        );
 
-}
+    }
 
 
     video.addEventListener(
@@ -2722,28 +2714,23 @@ if (episodeSelector) {
         updatePlayButton
     );
 
+
     updatePlayButton();
 
 
 
     /* =========================================
        CLIC SUR LA VIDÉO
-       PAUSE / LECTURE
+       + DOUBLE-CLIC AU CENTRE
     ========================================== */
 
-    let centerClickTimer =
+    let videoClickTimer =
         null;
 
 
     video.addEventListener(
         "click",
         (event) => {
-
-            /*
-               Les boutons/éléments situés
-               au-dessus ne doivent pas
-               déclencher la pause.
-            */
 
             if (
                 event.target !== video
@@ -2755,11 +2742,11 @@ if (episodeSelector) {
 
 
             clearTimeout(
-                centerClickTimer
+                videoClickTimer
             );
 
 
-            centerClickTimer =
+            videoClickTimer =
                 setTimeout(
                     () => {
 
@@ -2775,20 +2762,9 @@ if (episodeSelector) {
     );
 
 
-
-    /* =========================================
-       DOUBLE-CLIC AU CENTRE
-       PLEIN ÉCRAN — ORDINATEUR UNIQUEMENT
-    ========================================== */
-
     video.addEventListener(
         "dblclick",
         (event) => {
-
-            /*
-               Les appareils tactiles ne
-               déclenchent pas cette fonction.
-            */
 
             if (
                 window.matchMedia(
@@ -2802,7 +2778,7 @@ if (episodeSelector) {
 
 
             clearTimeout(
-                centerClickTimer
+                videoClickTimer
             );
 
 
@@ -2814,7 +2790,7 @@ if (episodeSelector) {
 
 
     /* =========================================
-       RETOUR / AVANCE 10 SECONDES
+       AVANCER / RECULER
     ========================================== */
 
     function seekBy(seconds) {
@@ -2871,7 +2847,7 @@ if (episodeSelector) {
 
 
     /* =========================================
-       BARRE DE PROGRESSION
+       PROGRESSION
     ========================================== */
 
     function updateProgress() {
@@ -2976,68 +2952,60 @@ if (episodeSelector) {
        APERÇU DU TEMPS
     ========================================== */
 
-    function updateTimePreview(event) {
-
-        if (
-            !progressContainer ||
-            !timePreview ||
-            !Number.isFinite(
-                video.duration
-            ) ||
-            video.duration <= 0
-        ) {
-
-            return;
-
-        }
-
-
-        const rectangle =
-            progressContainer.getBoundingClientRect();
-
-
-        const position =
-            Math.max(
-                0,
-                Math.min(
-                    rectangle.width,
-                    event.clientX -
-                    rectangle.left
-                )
-            );
-
-
-        const percentage =
-            position /
-            rectangle.width;
-
-
-        const previewTime =
-            percentage *
-            video.duration;
-
-
-        timePreview.textContent =
-            formatVideoTime(
-                previewTime
-            );
-
-
-        timePreview.style.left =
-            `${percentage * 100}%`;
-
-
-        timePreview.style.display =
-            "block";
-
-    }
-
-
     if (progressContainer) {
 
         progressContainer.addEventListener(
             "mousemove",
-            updateTimePreview
+            (event) => {
+
+                if (
+                    !timePreview ||
+                    !Number.isFinite(
+                        video.duration
+                    ) ||
+                    video.duration <= 0
+                ) {
+
+                    return;
+
+                }
+
+
+                const rectangle =
+                    progressContainer.getBoundingClientRect();
+
+
+                const position =
+                    Math.max(
+                        0,
+                        Math.min(
+                            rectangle.width,
+                            event.clientX -
+                            rectangle.left
+                        )
+                    );
+
+
+                const percentage =
+                    position /
+                    rectangle.width;
+
+
+                timePreview.textContent =
+                    formatVideoTime(
+                        percentage *
+                        video.duration
+                    );
+
+
+                timePreview.style.left =
+                    `${percentage * 100}%`;
+
+
+                timePreview.style.display =
+                    "block";
+
+            }
         );
 
 
@@ -3063,6 +3031,12 @@ if (episodeSelector) {
        SON
     ========================================== */
 
+    let lastVolume =
+        video.volume > 0
+            ? video.volume
+            : 1;
+
+
     function updateVolumeButton() {
 
         if (
@@ -3080,19 +3054,18 @@ if (episodeSelector) {
             );
 
 
-            return;
+        } else {
+
+            muteButton.textContent =
+                "♫";
+
+
+            muteButton.setAttribute(
+                "aria-label",
+                "Couper le son"
+            );
 
         }
-
-
-        muteButton.textContent =
-            "♫";
-
-
-        muteButton.setAttribute(
-            "aria-label",
-            "Couper le son"
-        );
 
     }
 
@@ -3104,8 +3077,34 @@ if (episodeSelector) {
             event.stopPropagation();
 
 
-            video.muted =
-                !video.muted;
+            if (
+                video.muted ||
+                video.volume === 0
+            ) {
+
+                video.muted =
+                    false;
+
+
+                video.volume =
+                    lastVolume > 0
+                        ? lastVolume
+                        : 1;
+
+            } else {
+
+                lastVolume =
+                    video.volume;
+
+
+                video.muted =
+                    true;
+
+            }
+
+
+            volumeSlider.value =
+                video.volume;
 
 
             updateVolumeButton();
@@ -3126,8 +3125,22 @@ if (episodeSelector) {
                 );
 
 
-            video.muted =
-                video.volume === 0;
+            if (
+                video.volume > 0
+            ) {
+
+                lastVolume =
+                    video.volume;
+
+                video.muted =
+                    false;
+
+            } else {
+
+                video.muted =
+                    true;
+
+            }
 
 
             updateVolumeButton();
@@ -3251,106 +3264,93 @@ if (episodeSelector) {
 
 
 
-
     /* =========================================
-       AFFICHAGE / DISPARITION DES CONTRÔLES
+       TÉLÉCHARGEMENT
     ========================================== */
 
-    let hideControlsTimer =
-        null;
+    function updateDownloadLink() {
+
+        if (!downloadButton) {
+
+            return;
+
+        }
 
 
-    function showControls() {
-
-        player.classList.remove(
-            "controls-hidden"
-        );
-
-
-        clearTimeout(
-            hideControlsTimer
-        );
-
-
-        hideControlsTimer =
-            setTimeout(
-                () => {
-
-                    if (
-                        !video.paused
-                    ) {
-
-                        player.classList.add(
-                            "controls-hidden"
-                        );
-
-                    }
-
-                },
-                5000
+        const source =
+            document.getElementById(
+                "video-source"
             );
 
-    }
+
+        const sourceUrl =
+            video.currentSrc ||
+            (
+                source
+                    ? source.src
+                    : ""
+            );
 
 
-    function keepControlsVisible() {
+        if (sourceUrl) {
 
-        showControls();
-
-    }
-
-
-    player.addEventListener(
-        "mousemove",
-        keepControlsVisible
-    );
+            downloadButton.href =
+                sourceUrl;
 
 
-    player.addEventListener(
-        "pointermove",
-        keepControlsVisible
-    );
+            downloadButton.setAttribute(
+                "download",
+                ""
+            );
 
 
-    player.addEventListener(
-        "pointerdown",
-        keepControlsVisible
-    );
+            downloadButton.style.pointerEvents =
+                "auto";
 
 
-    player.addEventListener(
-        "touchstart",
-        keepControlsVisible,
-        {
-            passive: true
+            downloadButton.style.opacity =
+                "1";
+
+        } else {
+
+            downloadButton.removeAttribute(
+                "href"
+            );
+
+
+            downloadButton.style.pointerEvents =
+                "none";
+
+
+            downloadButton.style.opacity =
+                "0.45";
+
         }
+
+    }
+
+
+    video.addEventListener(
+        "loadedmetadata",
+        updateDownloadLink
     );
 
 
     video.addEventListener(
-        "pause",
-        () => {
-
-            showControls();
-
-            clearTimeout(
-                hideControlsTimer
-            );
-
-        }
+        "loadeddata",
+        updateDownloadLink
     );
 
 
-    showControls();
+    updateDownloadLink();
 
 
 
     /* =========================================
-       ZONES GAUCHE / DROITE
-       CLIC SIMPLE + DOUBLE TAP
+       DOUBLE-TAP MOBILE
     ========================================== */
 
-    function setupSeekZone(
+    function setupMobileSeekZone(
         zone,
         direction
     ) {
@@ -3362,103 +3362,13 @@ if (episodeSelector) {
         }
 
 
-        let clickTimer =
-            null;
-
-
-        let lastTouchTime =
+        let lastTap =
             0;
 
 
-        let waitingForSecondTap =
-            false;
+        let singleTapTimer =
+            null;
 
-
-        /*
-           CLIC SOURIS SIMPLE
-           → pause / lecture
-        */
-
-        zone.addEventListener(
-            "click",
-            (event) => {
-
-                /*
-                   Sur mobile, la gestion
-                   est faite par touchend.
-                */
-
-                if (
-                    "ontouchstart" in window
-                ) {
-
-                    return;
-
-                }
-
-
-                event.stopPropagation();
-
-
-                clearTimeout(
-                    clickTimer
-                );
-
-
-                clickTimer =
-                    setTimeout(
-                        () => {
-
-                            togglePlay();
-
-                            showControls();
-
-                        },
-                        220
-                    );
-
-            }
-        );
-
-
-        /*
-           DOUBLE-CLIC SOURIS
-           → sur desktop :
-           lecture/pause uniquement,
-           pas de seek.
-        */
-
-        zone.addEventListener(
-            "dblclick",
-            (event) => {
-
-                if (
-                    "ontouchstart" in window
-                ) {
-
-                    return;
-
-                }
-
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-
-                clearTimeout(
-                    clickTimer
-                );
-
-            }
-        );
-
-
-        /*
-           MOBILE :
-           premier tap = pause / lecture.
-           deuxième tap rapide = ±10 secondes.
-        */
 
         zone.addEventListener(
             "touchend",
@@ -3475,25 +3385,20 @@ if (episodeSelector) {
 
                 const elapsed =
                     now -
-                    lastTouchTime;
+                    lastTap;
 
 
                 if (
-                    waitingForSecondTap &&
-                    elapsed >= 0 &&
+                    elapsed > 0 &&
                     elapsed < 350
                 ) {
 
                     clearTimeout(
-                        clickTimer
+                        singleTapTimer
                     );
 
 
-                    waitingForSecondTap =
-                        false;
-
-
-                    lastTouchTime =
+                    lastTap =
                         0;
 
 
@@ -3507,30 +3412,25 @@ if (episodeSelector) {
                 }
 
 
-                waitingForSecondTap =
-                    true;
-
-
-                lastTouchTime =
+                lastTap =
                     now;
 
 
                 clearTimeout(
-                    clickTimer
+                    singleTapTimer
                 );
 
 
-                clickTimer =
+                singleTapTimer =
                     setTimeout(
                         () => {
-
-                            waitingForSecondTap =
-                                false;
-
 
                             togglePlay();
 
                             showControls();
+
+                            lastTap =
+                                0;
 
                         },
                         350
@@ -3545,13 +3445,13 @@ if (episodeSelector) {
     }
 
 
-    setupSeekZone(
+    setupMobileSeekZone(
         leftSeekZone,
         -1
     );
 
 
-    setupSeekZone(
+    setupMobileSeekZone(
         rightSeekZone,
         1
     );
@@ -3666,6 +3566,16 @@ if (episodeSelector) {
                     video.volume;
 
 
+                if (
+                    video.volume > 0
+                ) {
+
+                    lastVolume =
+                        video.volume;
+
+                }
+
+
                 updateVolumeButton();
 
                 showControls();
@@ -3697,7 +3607,21 @@ if (episodeSelector) {
                     video.volume;
 
 
-                updateVolumeButton();
+                if (
+                    video.volume === 0
+                ) {
+
+                    updateVolumeButton();
+
+                } else {
+
+                    lastVolume =
+                        video.volume;
+
+                    updateVolumeButton();
+
+                }
+
 
                 showControls();
 
@@ -3707,6 +3631,53 @@ if (episodeSelector) {
 
         }
     );
+
+
+
+    /* =========================================
+       INITIALISATION DES SÉLECTEURS
+    ========================================== */
+
+    populateSeasonSelect(
+        anime,
+        currentSeason.id
+    );
+
+
+    populateEpisodeSelect(
+        currentSeason,
+        currentEpisode.number
+    );
+
+
+    updateEpisodeButtons(
+        anime,
+        currentSeason.id,
+        currentEpisode.number
+    );
+
+
+    updateVideoSource(
+        anime,
+        currentSeason.id,
+        currentEpisode.number
+    );
+
+
+    restoreVideoPosition(
+        anime.id,
+        video
+    );
+
+
+    updatePlayerUrl(
+        anime.id,
+        currentSeason.id,
+        currentEpisode.number
+    );
+
+
+    showControls();
 
 
 
@@ -3730,8 +3701,12 @@ if (episodeSelector) {
                 1
             );
 
+
+            showControls();
+
         }
     );
+
 
 
     /* =========================================
@@ -3756,12 +3731,16 @@ if (episodeSelector) {
                 newEpisode
             );
 
+
+            showControls();
+
         }
     );
 
 
+
     /* =========================================
-       ÉPISODE PRÉCÉDENT
+       PRÉCÉDENT
     ========================================== */
 
     previousButton.addEventListener(
@@ -3798,6 +3777,9 @@ if (episodeSelector) {
                     episodeNumber - 1
                 );
 
+
+                showControls();
+
                 return;
 
             }
@@ -3826,14 +3808,18 @@ if (episodeSelector) {
                     lastEpisode.number
                 );
 
+
+                showControls();
+
             }
 
         }
     );
 
 
+
     /* =========================================
-       ÉPISODE SUIVANT
+       SUIVANT
     ========================================== */
 
     nextButton.addEventListener(
@@ -3852,7 +3838,7 @@ if (episodeSelector) {
                 );
 
 
-            const currentSeasonIndex =
+            const seasonIndex =
                 anime.seasons.findIndex(
                     (season) =>
                         season.id ===
@@ -3860,13 +3846,13 @@ if (episodeSelector) {
                 );
 
 
-            const currentSeason =
+            const season =
                 anime.seasons[
-                    currentSeasonIndex
+                    seasonIndex
                 ];
 
 
-            if (!currentSeason) {
+            if (!season) {
 
                 return;
 
@@ -3875,7 +3861,7 @@ if (episodeSelector) {
 
             if (
                 episodeNumber <
-                currentSeason.episodes.length
+                season.episodes.length
             ) {
 
                 loadPlayerEpisode(
@@ -3884,6 +3870,9 @@ if (episodeSelector) {
                     episodeNumber + 1
                 );
 
+
+                showControls();
+
                 return;
 
             }
@@ -3891,7 +3880,7 @@ if (episodeSelector) {
 
             const nextSeason =
                 anime.seasons[
-                    currentSeasonIndex + 1
+                    seasonIndex + 1
                 ];
 
 
@@ -3907,6 +3896,9 @@ if (episodeSelector) {
                 nextSeason.id,
                 1
             );
+
+
+            showControls();
 
         }
     );
