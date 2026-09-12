@@ -1402,6 +1402,10 @@ function displayAllContinueWatching() {
    PROGRESSION VIDÉO
 ========================================= */
 
+/* =========================================
+   PROGRESSION VIDÉO
+========================================= */
+
 function initializeVideoProgress(
     anime,
     seasonId,
@@ -1414,6 +1418,30 @@ function initializeVideoProgress(
         );
 
 
+    const seasonSelect =
+        document.getElementById(
+            "season-select"
+        );
+
+
+    const episodeSelect =
+        document.getElementById(
+            "episode-select"
+        );
+
+
+        const seasonSelector =
+    document.querySelector(
+        ".season-selector"
+    );
+
+
+const episodeSelector =
+    document.querySelector(
+        ".episode-selector"
+    );
+
+
     if (!video) {
 
         return;
@@ -1421,14 +1449,84 @@ function initializeVideoProgress(
     }
 
 
+    /*
+       On récupère toujours la saison et
+       l'épisode actuellement sélectionnés.
+
+       Cela permet de conserver une seule
+       position par anime tout en sachant
+       quel épisode a été regardé en dernier.
+    */
+
+    function getCurrentEpisodeInformation() {
+
+        return {
+
+            season:
+                Number(
+                    seasonSelect?.value
+                ) || Number(seasonId),
+
+            episode:
+                Number(
+                    episodeSelect?.value
+                ) || Number(episodeNumber)
+
+        };
+
+    }
+
+
+    /*
+       Sauvegarde de la progression.
+    */
+
+    function saveCurrentProgress() {
+
+        if (
+            !Number.isFinite(
+                video.currentTime
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const current =
+            getCurrentEpisodeInformation();
+
+
+        saveWatchProgress(
+            anime.id,
+            current.season,
+            current.episode,
+            video.currentTime,
+            video.duration
+        );
+
+    }
+
+
+    /*
+       Début réel du visionnage.
+       L'historique utilise également
+       l'épisode actuellement sélectionné.
+    */
+
     video.addEventListener(
         "play",
         () => {
 
+            const current =
+                getCurrentEpisodeInformation();
+
+
             saveWatchProgress(
                 anime.id,
-                seasonId,
-                episodeNumber,
+                current.season,
+                current.episode,
                 video.currentTime,
                 video.duration
             );
@@ -1436,70 +1534,42 @@ function initializeVideoProgress(
 
             addToWatchHistory(
                 anime.id,
-                seasonId,
-                episodeNumber
+                current.season,
+                current.episode
             );
 
         }
     );
 
+
+    /*
+       Sauvegarde pendant la lecture.
+    */
 
     video.addEventListener(
         "timeupdate",
-        () => {
-
-            if (
-                !Number.isFinite(
-                    video.currentTime
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            saveWatchProgress(
-                anime.id,
-                seasonId,
-                episodeNumber,
-                video.currentTime,
-                video.duration
-            );
-
-        }
+        saveCurrentProgress
     );
 
+
+    /*
+       Sauvegarde lors de la pause.
+    */
 
     video.addEventListener(
         "pause",
-        () => {
-
-            saveWatchProgress(
-                anime.id,
-                seasonId,
-                episodeNumber,
-                video.currentTime,
-                video.duration
-            );
-
-        }
+        saveCurrentProgress
     );
 
 
+    /*
+       Sauvegarde lors du changement de page
+       ou de la fermeture de l'onglet.
+    */
+
     window.addEventListener(
         "beforeunload",
-        () => {
-
-            saveWatchProgress(
-                anime.id,
-                seasonId,
-                episodeNumber,
-                video.currentTime,
-                video.duration
-            );
-
-        }
+        saveCurrentProgress
     );
 
 }
@@ -1856,6 +1926,10 @@ function updateEpisodeButtons(
    SOURCE VIDÉO
 ========================================= */
 
+/* =========================================
+   SOURCE VIDÉO
+========================================= */
+
 function updateVideoSource(
     anime,
     seasonId,
@@ -1884,9 +1958,39 @@ function updateVideoSource(
     }
 
 
-    source.src = "";
+    let videoPath = "";
+
+
+    /* =========================================
+       PICHI PICHI PITCH — SAISON 1
+    ========================================== */
+
+    if (
+        anime.id === "pichi-pichi-pitch" &&
+        Number(seasonId) === 1
+    ) {
+
+        const episodeNumberFormatted =
+            String(
+                Number(episodeNumber)
+            ).padStart(
+                3,
+                "0"
+            );
+
+
+        videoPath =
+            `videos/pichi-s1-e${episodeNumberFormatted}.mp4`;
+
+    }
+
+
+    source.src =
+        videoPath;
+
 
     video.load();
+
 
 }
 
@@ -2113,6 +2217,10 @@ function displayCategoryAnime() {
    INITIALISER LE LECTEUR
 ========================================= */
 
+/* =========================================
+   INITIALISER LE LECTEUR
+========================================= */
+
 function initializePlayer() {
 
     const seasonSelect =
@@ -2238,14 +2346,17 @@ function initializePlayer() {
         );
 
 
-    if (video) {
+    if (!video) {
 
-        restoreVideoPosition(
-            anime.id,
-            video
-        );
+        return;
 
     }
+
+
+    restoreVideoPosition(
+        anime.id,
+        video
+    );
 
 
     updatePlayerUrl(
@@ -2254,6 +2365,1354 @@ function initializePlayer() {
         currentEpisode.number
     );
 
+
+
+    /* =========================================
+       ÉLÉMENTS DU LECTEUR
+    ========================================== */
+
+    const player =
+        document.getElementById(
+            "custom-video-player"
+        );
+
+
+    const controls =
+        document.getElementById(
+            "video-controls"
+        );
+
+
+    const playButton =
+        document.getElementById(
+            "video-play"
+        );
+
+        const centerPlayButton =
+    document.getElementById(
+        "video-center-play"
+    );
+
+
+    const rewindButton =
+        document.getElementById(
+            "video-rewind"
+        );
+
+
+    const forwardButton =
+        document.getElementById(
+            "video-forward"
+        );
+
+
+    const progress =
+        document.getElementById(
+            "video-progress"
+        );
+
+
+    const progressContainer =
+        document.querySelector(
+            ".video-progress-container"
+        );
+
+
+    const timeDisplay =
+        document.getElementById(
+            "video-time"
+        );
+
+
+    const timePreview =
+        document.getElementById(
+            "video-time-preview"
+        );
+
+
+    const muteButton =
+        document.getElementById(
+            "video-mute"
+        );
+
+
+    const volumeSlider =
+        document.getElementById(
+            "video-volume"
+        );
+
+
+    const fullscreenButton =
+        document.getElementById(
+            "video-fullscreen"
+        );
+
+
+    const leftSeekZone =
+        document.getElementById(
+            "video-seek-left"
+        );
+
+
+    const rightSeekZone =
+        document.getElementById(
+            "video-seek-right"
+        );
+
+
+    if (
+        !player ||
+        !controls ||
+        !playButton ||
+        !rewindButton ||
+        !forwardButton ||
+        !progress ||
+        !timeDisplay ||
+        !muteButton ||
+        !volumeSlider ||
+        !fullscreenButton
+    ) {
+
+        return;
+
+    }
+if (seasonSelector) {
+
+    seasonSelector.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === seasonSelect
+            ) {
+
+                return;
+
+            }
+
+
+            seasonSelect.click();
+
+        }
+    );
+
+}
+
+
+if (episodeSelector) {
+
+    episodeSelector.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === episodeSelect
+            ) {
+
+                return;
+
+            }
+
+
+            episodeSelect.click();
+
+        }
+    );
+
+}
+
+
+    /* =========================================
+       OUTILS
+    ========================================== */
+
+    function formatVideoTime(seconds) {
+
+        if (
+            !Number.isFinite(seconds) ||
+            seconds < 0
+        ) {
+
+            return "00:00";
+
+        }
+
+
+        const totalSeconds =
+            Math.floor(seconds);
+
+
+        const minutes =
+            Math.floor(
+                totalSeconds / 60
+            );
+
+
+        const remainingSeconds =
+            totalSeconds % 60;
+
+
+        const hours =
+            Math.floor(
+                minutes / 60
+            );
+
+
+        const displayMinutes =
+            minutes % 60;
+
+
+        if (hours > 0) {
+
+            return (
+                String(hours).padStart(2, "0") +
+                ":" +
+                String(displayMinutes).padStart(2, "0") +
+                ":" +
+                String(remainingSeconds).padStart(2, "0")
+            );
+
+        }
+
+
+        return (
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(remainingSeconds).padStart(2, "0")
+        );
+
+    }
+
+
+
+    /* =========================================
+       LECTURE / PAUSE
+    ========================================== */
+
+    function updatePlayButton() {
+
+    if (video.paused) {
+
+        playButton.textContent =
+            "▶";
+
+
+        playButton.setAttribute(
+            "aria-label",
+            "Lire"
+        );
+
+
+        if (centerPlayButton) {
+
+            centerPlayButton.classList.remove(
+                "is-hidden"
+            );
+
+
+            centerPlayButton.setAttribute(
+                "aria-label",
+                "Lire la vidéo"
+            );
+
+        }
+
+    } else {
+
+        playButton.textContent =
+            "Ⅱ";
+
+
+        playButton.setAttribute(
+            "aria-label",
+            "Mettre en pause"
+        );
+
+
+        if (centerPlayButton) {
+
+            centerPlayButton.classList.add(
+                "is-hidden"
+            );
+
+
+            centerPlayButton.setAttribute(
+                "aria-label",
+                "Mettre en pause"
+            );
+
+        }
+
+    }
+
+}
+
+
+    function togglePlay() {
+
+        if (video.paused) {
+
+            const promise =
+                video.play();
+
+
+            if (promise) {
+
+                promise.catch(
+                    () => {}
+                );
+
+            }
+
+        } else {
+
+            video.pause();
+
+        }
+
+    }
+
+
+    playButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            togglePlay();
+
+            showControls();
+
+        }
+    );
+
+
+    if (centerPlayButton) {
+
+    centerPlayButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            togglePlay();
+
+            showControls();
+
+        }
+    );
+
+}
+
+
+    video.addEventListener(
+        "play",
+        updatePlayButton
+    );
+
+
+    video.addEventListener(
+        "pause",
+        updatePlayButton
+    );
+
+
+    video.addEventListener(
+        "ended",
+        updatePlayButton
+    );
+
+    updatePlayButton();
+
+
+
+    /* =========================================
+       CLIC SUR LA VIDÉO
+       PAUSE / LECTURE
+    ========================================== */
+
+    let centerClickTimer =
+        null;
+
+
+    video.addEventListener(
+        "click",
+        (event) => {
+
+            /*
+               Les boutons/éléments situés
+               au-dessus ne doivent pas
+               déclencher la pause.
+            */
+
+            if (
+                event.target !== video
+            ) {
+
+                return;
+
+            }
+
+
+            clearTimeout(
+                centerClickTimer
+            );
+
+
+            centerClickTimer =
+                setTimeout(
+                    () => {
+
+                        togglePlay();
+
+                        showControls();
+
+                    },
+                    220
+                );
+
+        }
+    );
+
+
+
+    /* =========================================
+       DOUBLE-CLIC AU CENTRE
+       PLEIN ÉCRAN — ORDINATEUR UNIQUEMENT
+    ========================================== */
+
+    video.addEventListener(
+        "dblclick",
+        (event) => {
+
+            /*
+               Les appareils tactiles ne
+               déclenchent pas cette fonction.
+            */
+
+            if (
+                window.matchMedia(
+                    "(hover: none) and (pointer: coarse)"
+                ).matches
+            ) {
+
+                return;
+
+            }
+
+
+            clearTimeout(
+                centerClickTimer
+            );
+
+
+            toggleFullscreen();
+
+        }
+    );
+
+
+
+    /* =========================================
+       RETOUR / AVANCE 10 SECONDES
+    ========================================== */
+
+    function seekBy(seconds) {
+
+        if (
+            !Number.isFinite(
+                video.duration
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        video.currentTime =
+            Math.max(
+                0,
+                Math.min(
+                    video.duration,
+                    video.currentTime + seconds
+                )
+            );
+
+
+        showControls();
+
+    }
+
+
+    rewindButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            seekBy(-10);
+
+        }
+    );
+
+
+    forwardButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            seekBy(10);
+
+        }
+    );
+
+
+
+    /* =========================================
+       BARRE DE PROGRESSION
+    ========================================== */
+
+    function updateProgress() {
+
+        if (
+            !Number.isFinite(
+                video.duration
+            ) ||
+            video.duration <= 0
+        ) {
+
+            progress.value =
+                0;
+
+
+            timeDisplay.textContent =
+                "00:00 / 00:00";
+
+
+            return;
+
+        }
+
+
+        const percentage =
+            (
+                video.currentTime /
+                video.duration
+            ) * 100;
+
+
+        progress.value =
+            percentage;
+
+
+        timeDisplay.textContent =
+            formatVideoTime(
+                video.currentTime
+            ) +
+            " / " +
+            formatVideoTime(
+                video.duration
+            );
+
+
+        progress.style.background =
+            `
+            linear-gradient(
+                90deg,
+                #d99abb 0%,
+                #d99abb ${percentage}%,
+                #ded5e2 ${percentage}%,
+                #ded5e2 100%
+            )
+            `;
+
+    }
+
+
+    video.addEventListener(
+        "timeupdate",
+        updateProgress
+    );
+
+
+    video.addEventListener(
+        "loadedmetadata",
+        updateProgress
+    );
+
+
+    progress.addEventListener(
+        "input",
+        () => {
+
+            if (
+                Number.isFinite(
+                    video.duration
+                )
+            ) {
+
+                video.currentTime =
+                    (
+                        Number(
+                            progress.value
+                        ) /
+                        100
+                    ) *
+                    video.duration;
+
+            }
+
+
+            showControls();
+
+        }
+    );
+
+
+
+    /* =========================================
+       APERÇU DU TEMPS
+    ========================================== */
+
+    function updateTimePreview(event) {
+
+        if (
+            !progressContainer ||
+            !timePreview ||
+            !Number.isFinite(
+                video.duration
+            ) ||
+            video.duration <= 0
+        ) {
+
+            return;
+
+        }
+
+
+        const rectangle =
+            progressContainer.getBoundingClientRect();
+
+
+        const position =
+            Math.max(
+                0,
+                Math.min(
+                    rectangle.width,
+                    event.clientX -
+                    rectangle.left
+                )
+            );
+
+
+        const percentage =
+            position /
+            rectangle.width;
+
+
+        const previewTime =
+            percentage *
+            video.duration;
+
+
+        timePreview.textContent =
+            formatVideoTime(
+                previewTime
+            );
+
+
+        timePreview.style.left =
+            `${percentage * 100}%`;
+
+
+        timePreview.style.display =
+            "block";
+
+    }
+
+
+    if (progressContainer) {
+
+        progressContainer.addEventListener(
+            "mousemove",
+            updateTimePreview
+        );
+
+
+        progressContainer.addEventListener(
+            "mouseleave",
+            () => {
+
+                if (timePreview) {
+
+                    timePreview.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================
+       SON
+    ========================================== */
+
+    function updateVolumeButton() {
+
+        if (
+            video.muted ||
+            video.volume === 0
+        ) {
+
+            muteButton.textContent =
+                "♫̸";
+
+
+            muteButton.setAttribute(
+                "aria-label",
+                "Activer le son"
+            );
+
+
+            return;
+
+        }
+
+
+        muteButton.textContent =
+            "♫";
+
+
+        muteButton.setAttribute(
+            "aria-label",
+            "Couper le son"
+        );
+
+    }
+
+
+    muteButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+
+            video.muted =
+                !video.muted;
+
+
+            updateVolumeButton();
+
+            showControls();
+
+        }
+    );
+
+
+    volumeSlider.addEventListener(
+        "input",
+        () => {
+
+            video.volume =
+                Number(
+                    volumeSlider.value
+                );
+
+
+            video.muted =
+                video.volume === 0;
+
+
+            updateVolumeButton();
+
+            showControls();
+
+        }
+    );
+
+
+    volumeSlider.value =
+        video.volume;
+
+
+    updateVolumeButton();
+
+
+
+    /* =========================================
+       PLEIN ÉCRAN
+    ========================================== */
+
+    async function toggleFullscreen() {
+
+        try {
+
+            if (
+                !document.fullscreenElement
+            ) {
+
+                if (
+                    player.requestFullscreen
+                ) {
+
+                    await player.requestFullscreen();
+
+                } else if (
+                    player.webkitRequestFullscreen
+                ) {
+
+                    player.webkitRequestFullscreen();
+
+                }
+
+            } else {
+
+                if (
+                    document.exitFullscreen
+                ) {
+
+                    await document.exitFullscreen();
+
+                } else if (
+                    document.webkitExitFullscreen
+                ) {
+
+                    document.webkitExitFullscreen();
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Impossible de modifier le plein écran.",
+                error
+            );
+
+        }
+
+
+        showControls();
+
+    }
+
+
+    fullscreenButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            toggleFullscreen();
+
+        }
+    );
+
+
+    function updateFullscreenButton() {
+
+        const isFullscreen =
+            Boolean(
+                document.fullscreenElement
+            );
+
+
+        fullscreenButton.textContent =
+            isFullscreen
+                ? "×"
+                : "⛶";
+
+
+        fullscreenButton.setAttribute(
+            "aria-label",
+            isFullscreen
+                ? "Quitter le plein écran"
+                : "Plein écran"
+        );
+
+    }
+
+
+    document.addEventListener(
+        "fullscreenchange",
+        updateFullscreenButton
+    );
+
+
+    updateFullscreenButton();
+
+
+
+
+    /* =========================================
+       AFFICHAGE / DISPARITION DES CONTRÔLES
+    ========================================== */
+
+    let hideControlsTimer =
+        null;
+
+
+    function showControls() {
+
+        player.classList.remove(
+            "controls-hidden"
+        );
+
+
+        clearTimeout(
+            hideControlsTimer
+        );
+
+
+        hideControlsTimer =
+            setTimeout(
+                () => {
+
+                    if (
+                        !video.paused
+                    ) {
+
+                        player.classList.add(
+                            "controls-hidden"
+                        );
+
+                    }
+
+                },
+                5000
+            );
+
+    }
+
+
+    function keepControlsVisible() {
+
+        showControls();
+
+    }
+
+
+    player.addEventListener(
+        "mousemove",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "pointermove",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "pointerdown",
+        keepControlsVisible
+    );
+
+
+    player.addEventListener(
+        "touchstart",
+        keepControlsVisible,
+        {
+            passive: true
+        }
+    );
+
+
+    video.addEventListener(
+        "pause",
+        () => {
+
+            showControls();
+
+            clearTimeout(
+                hideControlsTimer
+            );
+
+        }
+    );
+
+
+    showControls();
+
+
+
+    /* =========================================
+       ZONES GAUCHE / DROITE
+       CLIC SIMPLE + DOUBLE TAP
+    ========================================== */
+
+    function setupSeekZone(
+        zone,
+        direction
+    ) {
+
+        if (!zone) {
+
+            return;
+
+        }
+
+
+        let clickTimer =
+            null;
+
+
+        let lastTouchTime =
+            0;
+
+
+        let waitingForSecondTap =
+            false;
+
+
+        /*
+           CLIC SOURIS SIMPLE
+           → pause / lecture
+        */
+
+        zone.addEventListener(
+            "click",
+            (event) => {
+
+                /*
+                   Sur mobile, la gestion
+                   est faite par touchend.
+                */
+
+                if (
+                    "ontouchstart" in window
+                ) {
+
+                    return;
+
+                }
+
+
+                event.stopPropagation();
+
+
+                clearTimeout(
+                    clickTimer
+                );
+
+
+                clickTimer =
+                    setTimeout(
+                        () => {
+
+                            togglePlay();
+
+                            showControls();
+
+                        },
+                        220
+                    );
+
+            }
+        );
+
+
+        /*
+           DOUBLE-CLIC SOURIS
+           → sur desktop :
+           lecture/pause uniquement,
+           pas de seek.
+        */
+
+        zone.addEventListener(
+            "dblclick",
+            (event) => {
+
+                if (
+                    "ontouchstart" in window
+                ) {
+
+                    return;
+
+                }
+
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                clearTimeout(
+                    clickTimer
+                );
+
+            }
+        );
+
+
+        /*
+           MOBILE :
+           premier tap = pause / lecture.
+           deuxième tap rapide = ±10 secondes.
+        */
+
+        zone.addEventListener(
+            "touchend",
+            (event) => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                const now =
+                    Date.now();
+
+
+                const elapsed =
+                    now -
+                    lastTouchTime;
+
+
+                if (
+                    waitingForSecondTap &&
+                    elapsed >= 0 &&
+                    elapsed < 350
+                ) {
+
+                    clearTimeout(
+                        clickTimer
+                    );
+
+
+                    waitingForSecondTap =
+                        false;
+
+
+                    lastTouchTime =
+                        0;
+
+
+                    seekBy(
+                        direction * 10
+                    );
+
+
+                    return;
+
+                }
+
+
+                waitingForSecondTap =
+                    true;
+
+
+                lastTouchTime =
+                    now;
+
+
+                clearTimeout(
+                    clickTimer
+                );
+
+
+                clickTimer =
+                    setTimeout(
+                        () => {
+
+                            waitingForSecondTap =
+                                false;
+
+
+                            togglePlay();
+
+                            showControls();
+
+                        },
+                        350
+                    );
+
+            },
+            {
+                passive: false
+            }
+        );
+
+    }
+
+
+    setupSeekZone(
+        leftSeekZone,
+        -1
+    );
+
+
+    setupSeekZone(
+        rightSeekZone,
+        1
+    );
+
+
+
+    /* =========================================
+       CLAVIER
+    ========================================== */
+
+    function isTypingField(
+        element
+    ) {
+
+        if (!element) {
+
+            return false;
+
+        }
+
+
+        const tagName =
+            element.tagName
+                ? element.tagName.toLowerCase()
+                : "";
+
+
+        return (
+            tagName === "input" ||
+            tagName === "textarea" ||
+            tagName === "select"
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                isTypingField(
+                    document.activeElement
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                event.code === "Space"
+            ) {
+
+                event.preventDefault();
+
+                togglePlay();
+
+                showControls();
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                event.preventDefault();
+
+                seekBy(-10);
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                event.preventDefault();
+
+                seekBy(10);
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowUp"
+            ) {
+
+                event.preventDefault();
+
+
+                video.muted =
+                    false;
+
+
+                video.volume =
+                    Math.min(
+                        1,
+                        video.volume + 0.05
+                    );
+
+
+                volumeSlider.value =
+                    video.volume;
+
+
+                updateVolumeButton();
+
+                showControls();
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowDown"
+            ) {
+
+                event.preventDefault();
+
+
+                video.volume =
+                    Math.max(
+                        0,
+                        video.volume - 0.05
+                    );
+
+
+                video.muted =
+                    video.volume === 0;
+
+
+                volumeSlider.value =
+                    video.volume;
+
+
+                updateVolumeButton();
+
+                showControls();
+
+                return;
+
+            }
+
+        }
+    );
+
+
+
+    /* =========================================
+       CHANGEMENT DE SAISON
+    ========================================== */
 
     seasonSelect.addEventListener(
         "change",
@@ -2274,6 +3733,10 @@ function initializePlayer() {
         }
     );
 
+
+    /* =========================================
+       CHANGEMENT D'ÉPISODE
+    ========================================== */
 
     episodeSelect.addEventListener(
         "change",
@@ -2296,6 +3759,10 @@ function initializePlayer() {
         }
     );
 
+
+    /* =========================================
+       ÉPISODE PRÉCÉDENT
+    ========================================== */
 
     previousButton.addEventListener(
         "click",
@@ -2364,6 +3831,10 @@ function initializePlayer() {
         }
     );
 
+
+    /* =========================================
+       ÉPISODE SUIVANT
+    ========================================== */
 
     nextButton.addEventListener(
         "click",

@@ -68,28 +68,28 @@
         <div class="nav-actions">
 
             <a
-    href="ma-liste.html"
-    class="nav-button nav-button-link"
->
-    ♡ Ma liste
-</a>
+                href="ma-liste.html"
+                class="nav-button nav-button-link"
+            >
+                ♡ Ma liste
+            </a>
 
 
-<a
-    href="mon-espace.html"
-    class="nav-button nav-button-link"
->
-    ♡ Mon espace
-</a>
+            <a
+                href="mon-espace.html"
+                class="nav-button nav-button-link"
+            >
+                ♡ Mon espace
+            </a>
 
 
-<button
-    class="nav-button"
-    id="search-button"
-    type="button"
->
-    ⌕ Rechercher
-</button>
+            <button
+                class="nav-button"
+                id="search-button"
+                type="button"
+            >
+                ⌕ Rechercher
+            </button>
 
         </div>
 
@@ -237,21 +237,219 @@
             </div>
 
 
-            <video
-                id="video-player"
-                controls
-                preload="metadata"
+
+            <div
+                class="custom-video-player"
+                id="custom-video-player"
             >
 
-                <source
-                    id="video-source"
-                    src=""
-                    type="video/mp4"
+
+                <!-- =====================
+                     VIDÉO
+                ====================== -->
+
+                <video
+                    id="video-player"
+                    preload="metadata"
+                    playsinline
+                    webkit-playsinline
                 >
 
-                Ton navigateur ne peut pas lire cette vidéo.
+                    <source
+                        id="video-source"
+                        src=""
+                        type="video/mp4"
+                    >
 
-            </video>
+                    Ton navigateur ne peut pas lire cette vidéo.
+
+                </video>
+
+                <button
+    type="button"
+    id="video-center-play"
+    class="video-center-play"
+    aria-label="Lire la vidéo"
+>
+    ▶
+</button>
+
+
+
+                <!-- =====================
+                     ZONES DOUBLE-CLIC MOBILE
+                ====================== -->
+
+                <div
+                    class="video-seek-zone video-seek-zone-left"
+                    id="video-seek-left"
+                    aria-hidden="true"
+                >
+                </div>
+
+
+                <div
+                    class="video-seek-zone video-seek-zone-right"
+                    id="video-seek-right"
+                    aria-hidden="true"
+                >
+                </div>
+
+
+
+                <!-- =====================
+                     CONTRÔLES VIDÉO
+                ====================== -->
+
+                <div
+                    class="video-controls"
+                    id="video-controls"
+                >
+
+
+                    <!-- =================
+                         BARRE DE PROGRESSION
+                    ================== -->
+
+                    <div class="video-progress-container">
+
+                        <div
+                            class="video-time-preview"
+                            id="video-time-preview"
+                        >
+                            00:00
+                        </div>
+
+
+                        <input
+                            type="range"
+                            id="video-progress"
+                            class="video-progress"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step="0.1"
+                            aria-label="Progression de la vidéo"
+                        >
+
+                    </div>
+
+
+
+                    <!-- =================
+                         LIGNE DES CONTRÔLES
+                    ================== -->
+
+                    <div class="video-controls-row">
+
+
+                        <!-- =================
+                             RETOUR 10 SECONDES
+                        ================== -->
+
+                        <button
+                            type="button"
+                            id="video-rewind"
+                            class="video-control-button"
+                            aria-label="Reculer de 10 secondes"
+                        >
+                            ↶ 10
+                        </button>
+
+
+
+                        <!-- =================
+                             LECTURE / PAUSE
+                        ================== -->
+
+                        <button
+                            type="button"
+                            id="video-play"
+                            class="video-control-button"
+                            aria-label="Lire"
+                        >
+                            ▶
+                        </button>
+
+
+
+                        <!-- =================
+                             AVANCE 10 SECONDES
+                        ================== -->
+
+                        <button
+                            type="button"
+                            id="video-forward"
+                            class="video-control-button"
+                            aria-label="Avancer de 10 secondes"
+                        >
+                            10 ↷
+                        </button>
+
+
+
+                        <!-- =================
+                             TEMPS
+                        ================== -->
+
+                        <span
+                            class="video-time"
+                            id="video-time"
+                        >
+                            00:00 / 00:00
+                        </span>
+
+
+
+                        <div class="video-controls-spacer"></div>
+
+
+
+                        <!-- =================
+                             SON
+                        ================== -->
+
+                        <button
+                            type="button"
+                            id="video-mute"
+                            class="video-control-button"
+                            aria-label="Couper le son"
+                        >
+                            ♫
+                        </button>
+
+
+                        <input
+                            type="range"
+                            id="video-volume"
+                            class="video-volume"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                            aria-label="Volume"
+                        >
+
+
+
+                        <!-- =================
+                             PLEIN ÉCRAN
+                        ================== -->
+
+                        <button
+                            type="button"
+                            id="video-fullscreen"
+                            class="video-control-button"
+                            aria-label="Plein écran"
+                        >
+                            ⛶
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
 

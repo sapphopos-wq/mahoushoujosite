@@ -1970,11 +1970,16 @@ footer p {
    LECTEUR — PAGE
 ========================================= */
 
+/* =========================================
+   PAGE LECTEUR
+========================================= */
+
 .player-page {
+
     width:
         min(
-            1000px,
-            90%
+            1100px,
+            92%
         );
 
     margin: 0 auto;
@@ -1993,6 +1998,7 @@ footer p {
 ========================================= */
 
 .episode-controls {
+
     display: flex;
 
     justify-content: center;
@@ -2009,47 +2015,73 @@ footer p {
 
 .season-selector,
 .episode-selector {
+
     display: flex;
 
     align-items: center;
 
     gap: 9px;
 
+    cursor: pointer;
+
     padding:
-        8px
-        15px;
+        9px
+        17px;
 
     border-radius: 999px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.78
+        linear-gradient(
+            135deg,
+            rgba(255, 240, 249, 0.96),
+            rgba(241, 235, 255, 0.96)
         );
 
     border:
         1px solid
         rgba(
-            202,
-            174,
-            216,
-            0.3
+            203,
+            169,
+            211,
+            0.55
+        );
+
+    box-shadow:
+        0 5px 18px
+        rgba(
+            190,
+            160,
+            205,
+            0.16
         );
 }
 
 
-.season-selector label,
-.episode-selector label {
-    color: #9b7ca2;
+.season-selector::before,
+.episode-selector::before {
+
+    content: "♡";
+
+    color: #d59abb;
 
     font-size: 0.9rem;
 }
 
 
+.season-selector label,
+.episode-selector label {
+
+    color: #9b7ca2;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+}
+
+
 .season-selector select,
 .episode-selector select {
+
     border: none;
 
     outline: none;
@@ -2071,6 +2103,7 @@ footer p {
 ========================================= */
 
 .episode-navigation {
+
     display: flex;
 
     justify-content: center;
@@ -2086,21 +2119,22 @@ footer p {
 
 
 .episode-nav-button {
+
     position: relative;
 
     border: none;
 
     padding:
         12px
-        20px;
+        22px;
 
     border-radius: 999px;
 
     background:
         linear-gradient(
             135deg,
-            #f5dff3,
-            #e5e9fb
+            #f6ddeb,
+            #e7e8fb
         );
 
     color: #806b89;
@@ -2109,29 +2143,54 @@ footer p {
 
     font-size: 0.9rem;
 
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 15px
+        rgba(
+            187,
+            153,
+            197,
+            0.16
+        );
+
     transition:
         transform 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
 .episode-nav-button:hover {
+
     transform:
         translateY(-3px);
 
     background:
         linear-gradient(
             135deg,
-            #f9e6f5,
-            #e9edff
+            #fae5f2,
+            #eceeff
+        );
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            187,
+            153,
+            197,
+            0.22
         );
 }
 
 
 .episode-nav-button:disabled {
+
     opacity: 0.45;
 
     transform: none;
+
+    box-shadow: none;
 }
 
 
@@ -2140,6 +2199,7 @@ footer p {
 ========================================= */
 
 .video-wrapper {
+
     position: relative;
 
     width: 100%;
@@ -2148,30 +2208,73 @@ footer p {
 
     overflow: hidden;
 
-    border-radius: 28px;
+    border-radius: 30px;
 
     background:
-        radial-gradient(
-            circle at 50% 50%,
-            #f9f0ff 0%,
-            #ece9fb 55%,
-            #e4edf9 100%
+        linear-gradient(
+            135deg,
+            #fff4fa,
+            #f4f0ff
         );
 
     border:
-        1px solid
+        2px solid
         rgba(
-            202,
-            174,
-            216,
-            0.3
+            214,
+            176,
+            215,
+            0.62
         );
+
+    box-shadow:
+        0 12px 35px
+        rgba(
+            176,
+            145,
+            188,
+            0.18
+        );
+
+    isolation: isolate;
 }
 
 
-/* La vidéo */
+/*
+   Petite bordure intérieure façon
+   dentelle / cadre lolita.
+*/
+
+.video-wrapper::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    z-index: 5;
+
+    border:
+        1px dashed
+        rgba(
+            222,
+            184,
+            214,
+            0.72
+        );
+
+    border-radius: 23px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   VIDÉO
+========================================= */
 
 .video-wrapper video {
+
     width: 100%;
 
     height: 100%;
@@ -2180,66 +2283,799 @@ footer p {
 
     object-fit: contain;
 
-    background: #f5eff8;
+    background: #f8f3fa;
 }
 
 
 /* =========================================
-   PETITES DÉCORATIONS
+   CONTENEUR VIDÉO PERSONNALISÉ
+========================================= */
+
+.custom-video-player {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: inherit;
+
+    background: #f8f3fa;
+        cursor: inherit;
+}
+
+/* =========================================
+   BOUTON CENTRAL LECTURE
+========================================= */
+
+.video-center-play {
+
+    position: absolute;
+
+    z-index: 7;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    width: 76px;
+
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.85
+        );
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            255,
+            235,
+            247,
+            0.88
+        );
+
+    color: #b97da5;
+
+    font-size: 1.8rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px
+        rgba(
+            160,
+            120,
+            160,
+            0.22
+        );
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.video-center-play:hover {
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        scale(1.08);
+
+    background:
+        rgba(
+            255,
+            245,
+            251,
+            0.96
+        );
+}
+
+
+.video-center-play.is-hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   MODE PLEIN ÉCRAN
+========================================= */
+
+.custom-video-player:fullscreen {
+
+    background: #000000;
+
+    border-radius: 0;
+}
+
+
+.custom-video-player:-webkit-full-screen {
+
+    background: #000000;
+
+    border-radius: 0;
+}
+
+
+.custom-video-player:fullscreen video {
+
+    background: #000000;
+}
+
+
+.custom-video-player:-webkit-full-screen video {
+
+    background: #000000;
+}
+
+/* =========================================
+   DÉCORATIONS
 ========================================= */
 
 .video-decoration {
+
     position: absolute;
 
-    z-index: 2;
+    z-index: 8;
 
     color:
         rgba(
             255,
             255,
             255,
-            0.9
+            0.95
         );
 
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 
     pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 1px 4px
+            rgba(
+                155,
+                120,
+                160,
+                0.28
+            )
+        );
 }
 
 
 .video-decoration.top-left {
-    top: 12px;
 
-    left: 16px;
+    top: 15px;
+
+    left: 18px;
 }
 
 
 .video-decoration.top-right {
-    top: 12px;
 
-    right: 16px;
+    top: 15px;
+
+    right: 18px;
 }
 
 
 .video-decoration.bottom-left {
-    bottom: 42px;
 
-    left: 16px;
+    bottom: 82px;
+
+    left: 18px;
 }
 
 
 .video-decoration.bottom-right {
-    bottom: 42px;
 
-    right: 16px;
+    bottom: 82px;
+
+    right: 18px;
 }
 
 
 /* =========================================
-   RETOUR À L'ANIME
+   ZONES DOUBLE-CLIC
+========================================= */
+
+.video-seek-zone {
+
+    position: absolute;
+
+    top: 0;
+
+    bottom: 0;
+
+    z-index: 4;
+
+    width: 28%;
+
+    pointer-events: auto;
+
+    background: transparent;
+}
+
+
+.video-seek-zone-left {
+
+    left: 0;
+}
+
+
+.video-seek-zone-right {
+
+    right: 0;
+}
+
+
+/* =========================================
+   CONTRÔLES VIDÉO
+========================================= */
+
+.video-controls {
+
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+
+    bottom: 24px;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        calc(
+            100% - 48px
+        );
+
+    padding:
+        12px
+        16px
+        13px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            248,
+            253,
+            0.94
+        );
+
+    border:
+        1px solid
+        rgba(
+            215,
+            180,
+            215,
+            0.78
+        );
+
+    box-shadow:
+        0 6px 22px
+        rgba(
+            163,
+            130,
+            171,
+            0.18
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    opacity: 1;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/*
+   État masqué après inactivité.
+   Le JavaScript ajoutera la classe.
+*/
+
+.custom-video-player.controls-hidden,
+.custom-video-player.controls-hidden * {
+
+    cursor: none !important;
+}
+
+
+.custom-video-player.controls-hidden video {
+
+    cursor: none !important;
+}
+
+
+.custom-video-player.controls-hidden
+.video-controls {
+    opacity: 0;
+    pointer-events: none;
+
+    transform:
+        translate(
+            -50%,
+            8px
+        );
+}
+
+
+/* =========================================
+   BARRE DE PROGRESSION
+========================================= */
+
+.video-progress-container {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+
+.video-progress {
+
+    display: block;
+
+    width: 100%;
+
+    height: 8px;
+
+    margin: 0;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e6b8d8,
+            #cfcaf0
+        );
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.video-progress::-webkit-slider-runnable-track {
+
+    height: 8px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e7badb,
+            #d0ccf0
+        );
+}
+
+
+.video-progress::-webkit-slider-thumb {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 18px;
+
+    height: 18px;
+
+    margin-top: -5px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid
+        #ffffff;
+
+    background: #d99abb;
+
+    box-shadow:
+        0 2px 7px
+        rgba(
+            175,
+            125,
+            165,
+            0.3
+        );
+
+    cursor: pointer;
+}
+
+
+/* Firefox */
+
+.video-progress::-moz-range-track {
+
+    height: 8px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e7badb,
+            #d0ccf0
+        );
+}
+
+
+.video-progress::-moz-range-progress {
+
+    height: 8px;
+
+    border-radius: 999px;
+
+    background: #d69bbd;
+}
+
+
+.video-progress::-moz-range-thumb {
+
+    width: 18px;
+
+    height: 18px;
+
+    border:
+        2px solid
+        #ffffff;
+
+    border-radius: 50%;
+
+    background: #d99abb;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   APERÇU DU TEMPS
+========================================= */
+
+.video-time-preview {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 17px;
+
+    display: none;
+
+    padding:
+        5px
+        9px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            104,
+            81,
+            107,
+            0.88
+        );
+
+    color: #ffffff;
+
+    font-size: 0.72rem;
+
+    line-height: 1;
+
+    pointer-events: none;
+
+    white-space: nowrap;
+
+    transform:
+        translateX(-50%);
+}
+
+
+/* =========================================
+   LIGNE DES CONTRÔLES
+========================================= */
+
+.video-controls-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   BOUTONS DU LECTEUR
+========================================= */
+
+.video-control-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex:
+        0
+        0
+        auto;
+
+    min-width: 38px;
+
+    height: 36px;
+
+    padding:
+        0
+        10px;
+
+    border:
+        1px solid
+        rgba(
+            213,
+            176,
+            214,
+            0.62
+        );
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2f8,
+            #f0efff
+        );
+
+    color: #94718f;
+
+    font-family: inherit;
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 3px 9px
+        rgba(
+            171,
+            137,
+            177,
+            0.13
+        );
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.video-control-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7fb,
+            #f5f4ff
+        );
+
+    box-shadow:
+        0 5px 11px
+        rgba(
+            171,
+            137,
+            177,
+            0.19
+        );
+}
+
+
+.video-control-button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================
+   TEMPS
+========================================= */
+
+.video-time {
+
+    color: #947b91;
+
+    font-size: 0.78rem;
+
+    white-space: nowrap;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+/* =========================================
+   ESPACE ENTRE LES CONTRÔLES
+========================================= */
+
+.video-controls-spacer {
+
+    flex: 1 1 auto;
+}
+
+
+/* =========================================
+   VOLUME
+========================================= */
+
+.video-volume {
+
+    width: 90px;
+
+    height: 6px;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    border-radius: 999px;
+
+    background:
+        #dfd3e3;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+.video-volume::-webkit-slider-runnable-track {
+
+    height: 6px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d7a4bf,
+            #c8c4e8
+        );
+}
+
+
+.video-volume::-webkit-slider-thumb {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 14px;
+
+    height: 14px;
+
+    margin-top: -4px;
+
+    border:
+        2px solid
+        #ffffff;
+
+    border-radius: 50%;
+
+    background: #d99abb;
+
+    cursor: pointer;
+}
+
+
+.video-volume::-moz-range-track {
+
+    height: 6px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d7a4bf,
+            #c8c4e8
+        );
+}
+
+
+.video-volume::-moz-range-thumb {
+
+    width: 14px;
+
+    height: 14px;
+
+    border:
+        2px solid
+        #ffffff;
+
+    border-radius: 50%;
+
+    background: #d99abb;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================================
+   LIEN RETOUR
 ========================================= */
 
 .back-to-anime {
+
     display: inline-block;
 
     margin-top: 25px;
@@ -2257,6 +3093,7 @@ footer p {
 
 
 .back-to-anime:hover {
+
     color: #d080ae;
 
     transform:
@@ -2267,19 +3104,21 @@ footer p {
 
 
 /* =========================================
-   RESPONSIVE — LECTEUR
+   TABLETTE / MOBILE
 ========================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
     .player-page {
-        width: 92%;
+
+        width: 94%;
 
         padding-top: 45px;
     }
 
 
     .episode-controls {
+
         flex-direction: column;
 
         gap: 10px;
@@ -2287,6 +3126,7 @@ footer p {
 
 
     .episode-navigation {
+
         flex-direction: column;
 
         width: 100%;
@@ -2294,14 +3134,163 @@ footer p {
 
 
     .episode-nav-button {
+
         width: 100%;
     }
 
 
     .video-wrapper {
-        border-radius: 20px;
+
+        border-radius: 22px;
     }
 
+
+    .video-controls {
+
+        bottom: 18px;
+
+        width:
+            calc(
+                100% - 28px
+            );
+
+        padding:
+            10px
+            11px
+            11px;
+
+        border-radius: 17px;
+    }
+
+
+    .video-controls-row {
+
+        gap: 6px;
+    }
+
+
+    .video-control-button {
+
+        min-width: 34px;
+
+        height: 33px;
+
+        padding:
+            0
+            7px;
+
+        font-size: 0.72rem;
+    }
+
+
+    .video-time {
+
+        font-size: 0.68rem;
+    }
+
+
+    .video-volume {
+
+        width: 65px;
+    }
+
+
+    .video-decoration {
+
+        font-size: 1rem;
+    }
+
+
+    .video-decoration.bottom-left {
+
+        bottom: 72px;
+
+        left: 11px;
+    }
+
+
+    .video-decoration.bottom-right {
+
+        bottom: 72px;
+
+        right: 11px;
+    }
+
+}
+
+
+/* =========================================
+   PETIT TÉLÉPHONE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .video-controls {
+
+        bottom: 14px;
+
+        width:
+            calc(
+                100% - 18px
+            );
+
+        padding:
+            8px
+            8px
+            9px;
+
+        border-radius: 15px;
+    }
+
+
+    .video-progress {
+
+        height: 7px;
+    }
+
+
+    .video-progress::-webkit-slider-runnable-track {
+
+        height: 7px;
+    }
+
+
+    .video-progress::-moz-range-track {
+
+        height: 7px;
+    }
+
+
+    .video-control-button {
+
+        min-width: 30px;
+
+        height: 30px;
+
+        padding:
+            0
+            6px;
+
+        font-size: 0.67rem;
+    }
+
+
+    .video-time {
+
+        font-size: 0.62rem;
+    }
+
+
+    .video-volume {
+
+        display: none;
+    }
+
+
+    .video-decoration {
+
+        display: none;
+    }
 }
 
 
@@ -2538,15 +3527,51 @@ footer p {
 
 
 /* =========================================
-   MON ESPACE
+   MON ESPACE — THÈME KUROMI
 ========================================= */
 
 .my-space-page {
-    padding-bottom: 100px;
+
+    padding-bottom: 110px;
+
 }
 
 
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.my-space-page .section-kicker {
+
+    color: #9c79bd;
+
+    letter-spacing: 0.14em;
+
+}
+
+
+.my-space-page .section-heading h1 {
+
+    color: #6f527d;
+
+    font-size:
+        clamp(
+            2.3rem,
+            5vw,
+            3.5rem
+        );
+
+    font-weight: normal;
+
+}
+
+
+/* =========================================
+   GRILLE
+========================================= */
+
 .my-space-grid {
+
     width: 90%;
 
     max-width: 1100px;
@@ -2560,29 +3585,132 @@ footer p {
 
     flex-direction: column;
 
-    gap: 25px;
+    gap: 22px;
+
 }
 
 
+/* =========================================
+   CARTES KUROMI
+========================================= */
+
 .my-space-card {
+
+    position: relative;
+
     display: flex;
 
     align-items: center;
 
     gap: 25px;
 
-    padding: 30px;
+    padding: 28px 30px;
 
     text-decoration: none;
 
-    border-radius: 24px;
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(247, 239, 255, 0.97),
+            rgba(255, 237, 247, 0.96)
+        );
+
+    border:
+        1px solid
+        rgba(
+            169,
+            130,
+            194,
+            0.35
+        );
+
+    box-shadow:
+        0 8px 24px
+        rgba(
+            145,
+            109,
+            161,
+            0.14
+        );
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
 }
 
 
-.my-space-card-icon {
-    width: 65px;
+/*
+   Petite décoration intégrée à la carte.
+*/
 
-    height: 65px;
+.my-space-card::after {
+
+    content: "♡";
+
+    position: absolute;
+
+    right: 22px;
+
+    bottom: 13px;
+
+    color:
+        rgba(
+            157,
+            116,
+            183,
+            0.20
+        );
+
+    font-size: 2.5rem;
+
+    transform:
+        rotate(-12deg);
+
+    pointer-events: none;
+}
+
+
+.my-space-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(
+            169,
+            130,
+            194,
+            0.52
+        );
+
+    box-shadow:
+        0 12px 28px
+        rgba(
+            145,
+            109,
+            161,
+            0.20
+        );
+
+    text-decoration: none;
+
+}
+
+
+/* =========================================
+   ICÔNES
+========================================= */
+
+.my-space-card-icon {
+
+    width: 68px;
+
+    height: 68px;
 
     flex-shrink: 0;
 
@@ -2594,25 +3722,140 @@ footer p {
 
     border-radius: 50%;
 
-    font-size: 28px;
+    background:
+        linear-gradient(
+            135deg,
+            #eadcf5,
+            #f8dceb
+        );
+
+    border:
+        1px solid
+        rgba(
+            171,
+            132,
+            192,
+            0.35
+        );
+
+    color: #714d80;
+
+    font-size: 27px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        ),
+        0 4px 12px
+        rgba(
+            154,
+            116,
+            169,
+            0.14
+        );
+
+}
+
+
+/* =========================================
+   TEXTE
+========================================= */
+
+.my-space-card-content {
+
+    position: relative;
+
+    z-index: 1;
+
 }
 
 
 .my-space-card-content h2 {
+
     margin:
         0
         0
-        10px;
+        8px;
+
+    color: #674c73;
+
+    font-size: 1.2rem;
+
+    font-weight: normal;
+
 }
 
 
 .my-space-card-content p {
+
     margin: 0;
+
+    color: #947b9d;
+
+    line-height: 1.6;
+
+    font-size: 0.88rem;
+
 }
 
 
-.my-space-card-disabled {
-    cursor: inherit;
+/* =========================================
+   COULEURS INDIVIDUELLES
+========================================= */
+
+.my-space-card:nth-child(1)
+.my-space-card-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e3d8f5,
+            #eadff9
+        );
+
+}
+
+
+.my-space-card:nth-child(2)
+.my-space-card-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3d8ea,
+            #eadcf6
+        );
+
+}
+
+
+.my-space-card:nth-child(3)
+.my-space-card-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #dddaf5,
+            #eadcf4
+        );
+
+}
+
+
+.my-space-card:nth-child(4)
+.my-space-card-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0d5e7,
+            #e4d5ef
+        );
+
 }
 
 
@@ -2620,24 +3863,116 @@ footer p {
    CORRECTIONS — MON ESPACE
 ========================================= */
 
-
-/* Les liens restent noirs même après avoir été cliqués */
+/*
+   Les cartes restent noires comme demandé
+   pour le texte des liens.
+*/
 
 .my-space-card,
-.my-space-card:visited,
-.my-space-card:hover,
-.my-space-card:active {
+.my-space-card:visited {
+
     color: #000000;
+
 }
 
 
-/* Le texte sous chaque rubrique garde la même couleur */
+.my-space-card:hover,
+.my-space-card:active {
+
+    color: #000000;
+
+}
+
+
+/*
+   Le texte descriptif conserve sa propre
+   couleur pastel.
+*/
 
 .my-space-card-content p,
 .my-space-card-content p:visited,
 .my-space-card-content p:hover,
 .my-space-card-content p:active {
-    color: inherit;
+
+    color: #947b9d;
+
+}
+
+
+/* =========================================
+   RESPONSIVE — MON ESPACE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .my-space-page {
+
+        padding-bottom: 90px;
+
+    }
+
+
+    .my-space-grid {
+
+        width: 92%;
+
+        margin-top: 35px;
+
+        gap: 16px;
+
+    }
+
+
+    .my-space-card {
+
+        gap: 17px;
+
+        padding:
+            21px
+            20px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .my-space-card::after {
+
+        right: 13px;
+
+        bottom: 8px;
+
+        font-size: 2rem;
+
+    }
+
+
+    .my-space-card-icon {
+
+        width: 56px;
+
+        height: 56px;
+
+        font-size: 22px;
+
+    }
+
+
+    .my-space-card-content h2 {
+
+        font-size: 1rem;
+
+    }
+
+
+    .my-space-card-content p {
+
+        font-size: 0.78rem;
+
+        line-height: 1.45;
+
+    }
+
 }
 
 
